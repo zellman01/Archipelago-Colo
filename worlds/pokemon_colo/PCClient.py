@@ -244,7 +244,43 @@ class PCContext(BaseContext):
             map = CONSTRUCTION_LOT_ID
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0xFE and byte4 == 0xC4:
             map = PYRITE_ID
-        return map
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1C and byte4 == 0x28:
+            map = PYRITE_POLICE_DEPARTMENT_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1C and byte4 == 0x74:
+            map = PYRITE_FORTUNE_TELLING_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1D and byte4 == 0x0C:
+            map = PYRITE_DUKINGS_HOUSE_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0A and byte4 == 0x0C:
+            map = PYRITE_GRAND_HOTEL_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1D and byte4 == 0xF0:
+            map = PYRITE_WINDMILL_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1D and byte4 == 0x58:
+            map = PYRITE_DUKE_HIDEOUT_ID
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x20 and byte4 == 0x50:
+            map = PYRITE_COLOSSEUM_ID   
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1E and byte4 == 0x88:
+            map = PYRITE_BUILDING_1F_ID   
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1E and byte4 == 0xD4:
+            map = PYRITE_BUILDING_2F_ID    
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1F and byte4 == 0x20:
+            map = PYRITE_BUILDING_3F_ID     
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0xFE and byte4 == 0xC4:
+            map = PYRITE_BUILDING_ROOF_ID       
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1F and byte4 == 0x6C:
+            map = PYRITE_BUILDING_ROOF_INSIDE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0A and byte4 == 0x58:
+            map = PYRITE_CAVE_ENTRANCE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0D and byte4 == 0x9C:
+            map = PYRITE_CAVE_B1F_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0E and byte4 == 0x34:
+            map = PYRITE_CAVE_1F_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0E and byte4 == 0x80:
+            map = PYRITE_CAVE_SEWERS_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0D and byte4 == 0xE8:
+            map = PYRITE_CAVE_AFTER_SEWERS_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0F and byte4 == 0xFC:
+            map = PYRITE_CAVE_HIDEOUT_ID
+        return map  
 
     async def pc_check_locations(self):
         current_map: int = self.get_map_id()
@@ -330,7 +366,7 @@ class PCContext(BaseContext):
 
             if pc_item["data"] is None:
                 if pc_item not in warned_items:
-                    logger.error(f"Item {pc_item["name"]} does not have any data associated with it! Please inform the Pokemon Colosseum AP devs.")
+                    logger.error(f"Item {pc_item['name']} does not have any data associated with it! Please inform the Pokemon Colosseum AP devs.")
                     warned_items.append(pc_item)
                 continue
 
@@ -350,7 +386,7 @@ class PCContext(BaseContext):
                 success = await self.write_item_into_list(pc_item, KEY_ITEMS_BAG_START_OFFSET, 0xAC)
                 
                 if not success:                    
-                    logger.error(f"Item {pc_item["name"]} could not be added to Key Items because its full! Please inform the Pokemon Colosseum AP devs.")
+                    logger.error(f"Item {pc_item['name']} could not be added to Key Items because its full! Please inform the Pokemon Colosseum AP devs.")
 
             elif pc_item["data"].item_type == PCItemType.POKEMON:
                 # Handle adding a pokemon to the PC
@@ -382,7 +418,7 @@ class PCContext(BaseContext):
         success = await self.write_item_into_list(pc_item, bag_offset, max_items)
 
         if not success:
-            logger.info(f"Item {pc_item["name"]} could not be placed in list. No more space available. Placing in PC storage instead.")
+            logger.info(f"Item {pc_item['name']} could not be placed in list. No more space available. Placing in PC storage instead.")
             success = await self.write_into_pc_storage(pc_item)
 
         return success    

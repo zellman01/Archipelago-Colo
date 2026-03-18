@@ -22,6 +22,9 @@ class ColosseumRules:
         self.options = world.options
         self.world = world
         self.location_rules = {
+            Locations.Trainers.willie_rebattle: self.access_pyrite,
+            Locations.Trainers.justy: self.do_justy,
+            Locations.Misc.tm27: self.do_justy,
             Locations.Trainers.hader: self.access_under,
             Locations.Trainers.dury: self.access_under,
             Locations.Trainers.aidel: self.access_under,
@@ -132,6 +135,7 @@ class ColosseumRules:
             Regions.phenac_colosseum_r4: self.phenac_round_four_unlocked,
             Regions.pyrite: self.access_pyrite,
             Regions.pyrite_2: self.access_second_pyrite,
+            Regions.pyrite_jail_cell: self.has_jail_key,
             Regions.agate: self.access_agate,
             Regions.purify: self.access_relic_stone,
             Regions.mt_battle: self.access_mt_battle,
@@ -377,6 +381,9 @@ class ColosseumRules:
 
     def has_maingate_key(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.maingate_key, self.player)
+    
+    def has_jail_key(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.jail_key, self.player)
 
     def access_realgam(self, state: CollectionState) -> bool:
         init_state = state.has(Items.Progression.region_unlock, self.player, 4)

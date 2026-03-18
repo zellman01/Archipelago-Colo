@@ -1,6 +1,7 @@
 class Locations:
     class Trainers:
         willie = "Outside-City Stand - Trainer Willie Defeated"
+        willie_rebattle = "Outside-City Stand - Trainer Willie Rebattled"
         folly = "Phenac City - Shady Guy Folly Defeated"
         wakin = "Phenac City - Team Snagem Grunt Wakin Defeated"
         folly_1 = "Phenac City - Miror B. Peon Folly Defeated"
@@ -189,6 +190,7 @@ class Locations:
         rui = "Phenac City - Rui Saved"
         complete_pre_gym = "Pre Gym - Finish Pre Gym"
         tm41 = "Phenac City - Obtain TM41"
+        tm46 = "Pyrite Town Police Department - Obtain TM46"
         tm06 = "Pyrite Colosseum - Obtain TM06"
         windmill_gear = "Construction Site - Windmill Gear Get"
         ein_file_h = "Pyrite Building 1F - Ein File H Get"
@@ -210,6 +212,7 @@ class Locations:
         tm11 = "Phenac Colosseum - Obtain TM11"
         tm19 = "Phenac Colosseum - Optain TM19"
         tm22 = "Phenac Colosseum - Obtain TM22"
+        tm27 = "Phenac PreGym - Obtain TM27"
         dna_sample_1 = "Cipher Lab - DNA Sample Get"
         down_st_key = "Cipher Lab - Down St. Key Get"
         dna_sample_2 = "Cipher Lab - Left Hallway After Key DNA Sample Get"
@@ -335,6 +338,7 @@ class Regions:
     outside_city = "Outside-City Stand"
     pyrite = "Pyrite Town"
     pyrite_2 = "Pyrite Town Second Visit"
+    pyrite_jail_cell = "Pyrite Town Jail Cell"
     pyrite_colosseum = "Pyrite Colosseum"
     pyrite_colosseum_r1 = "Pyrite Colosseum Round 1"
     pyrite_colosseum_r2 = "Pyrite Colosseum Round 2"

@@ -123,7 +123,8 @@ BATTLE_WIN_CHECK = 0x8046D767
 OPPONENT_ID = 0x80473CA1
 
 #Misc
-RUI_NAME = 0x80409632 # Max 7 characters, 2 Byte per character. https://bulbapedia.bulbagarden.net/wiki/GameCube_character_encoding_(Generation_III)#Pok%C3%A9mon_Colosseum_and_XD
+PLAYER_MONEY_OFFSET = 0xAF4
+RUI_NAME_OFFSET = 0xB33 # Max 7 characters, 2 Byte per character. https://bulbapedia.bulbagarden.net/wiki/GameCube_character_encoding_(Generation_III)#Pok%C3%A9mon_Colosseum_and_XD
 
 # Special location codes
 NO_DISABLE = 0x5 # For trainer location type, do not disable the scanning loop as another check relies on the same information

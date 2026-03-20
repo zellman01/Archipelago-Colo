@@ -227,7 +227,7 @@ class Locations:
 
     class ShadowPokemon:
         makuhita_capture = "Phenac City - Makuhita Captured"
-        bayleaf_capture = "Bayleaf Captured"
+        bayleef_capture = "Bayleef Captured"
         quilava_capture = "Quilava Captured"
         croconaw_capture = "Croconaw Captured"
         slugma_capture = "Pyrite Town - Slugma Captured"

@@ -43,14 +43,33 @@ phenac_locations: Dict[str, PCLocData] = {
     Locations.Trainers.trudly: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EA, bit_pos=7), type=PCLocType.TRAINER, map_id=[MAYOR_HOUSE_ID]),
     Locations.Trainers.kaib: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BECA, bit_pos=0), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.drig: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=7), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
-    Locations.ShadowPokemon.croconaw_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=7), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
-    Locations.ShadowPokemon.quilava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=6), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
-    Locations.ShadowPokemon.quilava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=5), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
-    Locations.ShadowPokemon.bayleaf_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=4), type=PCLocType.SHADOW, map_id=[MAYOR_HOUSE_ID]),
+    Locations.ShadowPokemon.makuhita_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=4), type=PCLocType.SHADOW, map_id=[MAYOR_HOUSE_ID]),
     Locations.Chests.phenac_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5F, bit_pos=4), type=PCLocType.CHEST, map_id=[PHENAC_CITY_ID]),
-    Locations.Trainers.bluno: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=1), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
-    Locations.Trainers.rosso: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=0), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
+}
+
+# Array{Bayleaf, Quilava, Croconaw}
+starter_trainer_locations: Dict[str, PCLocData] = {
     Locations.Trainers.verde: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EF, bit_pos=7), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
+    Locations.Trainers.rosso: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=0), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
+    Locations.Trainers.bluno: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=1), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID])
+}
+
+starter_pokemon_captured: Dict[str, PCLocData] = {
+    Locations.ShadowPokemon.bayleef_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=5), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
+    Locations.ShadowPokemon.quilava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=6), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
+    Locations.ShadowPokemon.croconaw_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=7), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID])
+}
+
+starter_pokemon_purified: Dict[str, PCLocData] = {
+    Locations.ShadowPokemon.bayleaf_purify: None,
+    Locations.ShadowPokemon.quilava_purify: None,
+    Locations.ShadowPokemon.croconaw_purify: None
+}
+
+starter_trainer_locations_1: Dict[str, PCLocData] = {
+    Locations.Trainers.verde_1: None,
+    Locations.Trainers.rosso_1: None,
+    Locations.Trainers.bluno_1: None
 }
 
 pregym_locations: Dict[str, PCLocData] = {
@@ -237,31 +256,6 @@ pyrite_cave_extra: Dict[str, PCLocData] = {
 }
 
 pyrite_cave_locations = pyrite_cave_entrance_locations | pyrite_cave_1f_locations | pyrite_cave_b1f_locations | pyrite_cave_sewers_locations | pyrite_cave_after_sewers_locations | pyrite_cave_north_sewers_locations | pyrite_cave_miror_hideout
-
-# Array{Bayleaf, Quilava, Croconaw}
-starter_trainer_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.verde: None,
-    Locations.Trainers.rosso: None,
-    Locations.Trainers.bluno: None
-}
-
-starter_pokemon_captured: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleaf_capture: None,
-    Locations.ShadowPokemon.quilava_capture: None,
-    Locations.ShadowPokemon.croconaw_capture: None
-}
-
-starter_pokemon_purified: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleaf_purify: None,
-    Locations.ShadowPokemon.quilava_purify: None,
-    Locations.ShadowPokemon.croconaw_purify: None
-}
-
-starter_trainer_locations_1: Dict[str, PCLocData] = {
-    Locations.Trainers.verde_1: None,
-    Locations.Trainers.rosso_1: None,
-    Locations.Trainers.bluno_1: None
-}
 
 agate_locations: Dict[str, PCLocData] = {
     Locations.Misc.small_tablet: None,

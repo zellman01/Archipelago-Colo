@@ -32,7 +32,7 @@ class ColosseumRules:
             Locations.Misc.elevator_key: self.get_elevator_key,
             Locations.Misc.master_ball: self.can_pass_gate,
             Locations.ShadowPokemon.makuhita_capture: self.can_capture,
-            Locations.ShadowPokemon.bayleaf_capture: self.can_capture,
+            Locations.ShadowPokemon.bayleef_capture: self.can_capture,
             Locations.ShadowPokemon.quilava_capture: self.can_capture,
             Locations.ShadowPokemon.croconaw_capture: self.can_capture,
             Locations.ShadowPokemon.slugma_capture: self.can_capture,
@@ -80,7 +80,7 @@ class ColosseumRules:
             Locations.ShadowPokemon.shuckle_capture: self.can_capture,
             Locations.ShadowPokemon.togetic_capture: self.can_capture,
             Locations.ShadowPokemon.makuhita_purify: self.purify_makuhita,
-            Locations.ShadowPokemon.bayleaf_purify: self.purify_bayleaf,
+            Locations.ShadowPokemon.bayleef_purify: self.purify_bayleef,
             Locations.ShadowPokemon.quilava_purify: self.purify_quilava,
             Locations.ShadowPokemon.croconaw_purify: self.purify_croconaw,
             Locations.ShadowPokemon.slugma_purify: self.purify_slugma,
@@ -164,8 +164,8 @@ class ColosseumRules:
     def purify_makuhita(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.makuhita, self.player)
 
-    def purify_bayleaf(self, state: CollectionState) -> bool:
-        return state.has(Items.Progression.bayleaf, self.player)
+    def purify_bayleef(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.bayleef, self.player)
 
     def purify_quilava(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.quilava, self.player)

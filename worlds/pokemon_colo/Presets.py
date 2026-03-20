@@ -1,5 +1,5 @@
 option_presets = {
-    "Default Bayleaf": {
+    "Default Bayleef": {
         "goal": 0,
         "realgam_tower_unlock": 0,
         "purify_unlock_amount": 26,

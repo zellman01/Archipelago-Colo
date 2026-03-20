@@ -70,7 +70,7 @@ class ColosseumWorld(World):
     item_name_groups = {
         Categories.shadow_pokemon: {
             Items.Progression.makuhita,
-            Items.Progression.bayleaf,
+            Items.Progression.bayleef,
             Items.Progression.quilava,
             Items.Progression.croconaw,
             Items.Progression.misdreavus,

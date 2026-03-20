@@ -56,7 +56,7 @@ class PhenacStarterChoice(Choice):
     """Sets which one of the trainers will be considered in logic at Phenac at the start of the game. Will not add the others unless doing a goal that is not Evice
     Warning: This will put capturing this starter and defeating the coresponding trainer in logic at Phenac City. Setting it to random is not recommended."""
     display_name = "Phenac Johto Starter"
-    option_bayleaf = 0
+    option_bayleef = 0
     option_quilava = 1
     option_croconaw = 2
 

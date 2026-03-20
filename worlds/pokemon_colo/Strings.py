@@ -7,7 +7,7 @@ class Locations:
         folly_1 = "Phenac City - Miror B. Peon Folly Defeated"
         trudly = "Phenac City - Miror B. Peon Trudly Defeated"
         rosso = "Mystery Troop Rosso Defeated" # Quilava
-        verde = "Mystery Troop Verde Defeated" # Bayleaf
+        verde = "Mystery Troop Verde Defeated" # Bayleef
         bluno = "Mystery Troop Bluno Defeated" # Croconaw
         rosso_1 = "Cihper Peon Rosso Defeated"
         verde_1 = "Cipher Peon Verde Defeated"
@@ -277,7 +277,7 @@ class Locations:
         togetic_capture = "Togetic Captured"
 
         makuhita_purify = "Makuhita Purified"
-        bayleaf_purify = "Bayleaf Purified"
+        bayleef_purify = "Bayleef Purified"
         quilava_purify = "Quilava Purified"
         croconaw_purify = "Croconaw Purified"
         slugma_purify = "Slugma Purified"
@@ -376,7 +376,7 @@ class Events:
 class Items:
     class Progression:
         makuhita = "Makuhita"
-        bayleaf = "Bayleaf"
+        bayleef = "Bayleef"
         quilava = "Quilava"
         croconaw = "Croconaw"
         slugma = "Slugma"

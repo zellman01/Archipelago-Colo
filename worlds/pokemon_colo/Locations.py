@@ -47,7 +47,7 @@ phenac_locations: Dict[str, PCLocData] = {
     Locations.Chests.phenac_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5F, bit_pos=4), type=PCLocType.CHEST, map_id=[PHENAC_CITY_ID]),
 }
 
-# Array{Bayleaf, Quilava, Croconaw}
+# Array{Bayleef, Quilava, Croconaw}
 starter_trainer_locations: Dict[str, PCLocData] = {
     Locations.Trainers.verde: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EF, bit_pos=7), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.rosso: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=0), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
@@ -61,7 +61,7 @@ starter_pokemon_captured: Dict[str, PCLocData] = {
 }
 
 starter_pokemon_purified: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleaf_purify: None,
+    Locations.ShadowPokemon.bayleef_purify: None,
     Locations.ShadowPokemon.quilava_purify: None,
     Locations.ShadowPokemon.croconaw_purify: None
 }
@@ -552,7 +552,7 @@ starter_trainer_locations_list = [
 ]
 
 starter_pokemon_captured_list = [
-    Locations.ShadowPokemon.bayleaf_capture,
+    Locations.ShadowPokemon.bayleef_capture,
     Locations.ShadowPokemon.quilava_capture,
     Locations.ShadowPokemon.croconaw_capture
 ]

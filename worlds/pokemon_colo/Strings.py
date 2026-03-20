@@ -358,6 +358,7 @@ class Regions:
     lab_shutter = "Cipher Lab - Shutter"
     lab_main = "Cipher Lab - Main Area"
     lab_main_after_key = "Cipher Lab - After Down St. Key"
+    lab_main_after_puzzle = "Cipher Lab - After DNA Puzzle"
     the_under = "The Under"
     the_under_2 = "The Under After Part"
     the_under_f = "The Under - Forward"
@@ -449,6 +450,7 @@ class Items:
         card_key = "Card Key"
         down_st_key = "Down St. Key"
         data_rom = "Data Rom"
+        dna_sample = "DNA Sample"
     class Useful:
         l_disk = "L-Disk"
         d_disk = "D-Disk"
@@ -459,7 +461,6 @@ class Items:
         ein_file_p = "Ein File P"
         ein_file_c = "Ein File C"
         ein_file_f = "Ein File F"
-        dna_sample = "DNA Sample"
         masterball = "Master Ball"
         maxpotion = "Max Potion"
         fullrestore = "Full Restore x3"

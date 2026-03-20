@@ -147,6 +147,7 @@ class ColosseumRules:
             Regions.lab_station: self.access_lab_station,
             Regions.lab_main: self.access_lab_main,
             Regions.lab_main_after_key: self.access_lab_main_two,
+            Regions.lab_main_after_puzzle: self.access_lab_main_three,
             Regions.lab_shutter: self.has_maingate_key,
             Regions.realgam: self.access_realgam,
             Regions.pyrite_colosseum: self.access_pyrite_colosseum,
@@ -378,6 +379,9 @@ class ColosseumRules:
 
     def access_lab_main_two(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.down_st_key, self.player)
+
+    def access_lab_main_three(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.dna_sample, self.player, 3)
 
     def has_maingate_key(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.maingate_key, self.player)

@@ -404,7 +404,6 @@ lab_main_locations: Dict[str, PCLocData] = {
 lab_main_after_key_locations: Dict[str, PCLocData] = {
     Locations.Misc.dna_sample_2: None,
     Locations.Misc.dna_sample_3: None,
-    Locations.Misc.data_rom: None, # After DNA Puzzle
     Locations.Trainers.lare: None,
     Locations.Trainers.vana: None,
     Locations.Trainers.lesar: None,
@@ -412,8 +411,6 @@ lab_main_after_key_locations: Dict[str, PCLocData] = {
     Locations.Trainers.dubik: None,
     Locations.Trainers.kotan: None,
     Locations.Trainers.remil: None,
-    Locations.Trainers.skrub_1: None, # After DNA Puzzle
-    Locations.Trainers.ein: None, # After DNA Puzzle
     Locations.ShadowPokemon.murkrow_capture: None,
     Locations.ShadowPokemon.forretress_capture: None,
     Locations.ShadowPokemon.ariados_capture: None,
@@ -421,7 +418,13 @@ lab_main_after_key_locations: Dict[str, PCLocData] = {
     Locations.ShadowPokemon.vibrava_capture: None,
     Locations.ShadowPokemon.raikou_capture: None,
     Locations.Chests.lab_chest_6: None,
-    Locations.Chests.lab_chest_7: None # Afer DNA Puzzle
+}
+
+lab_main_after_puzzle_locations: Dict[str, PCLocData] = {
+    Locations.Misc.data_rom: None,
+    Locations.Trainers.skrub_1: None,
+    Locations.Trainers.ein: None,
+    Locations.Chests.lab_chest_7: None
 }
 
 lab_shutter_locations: Dict[str, PCLocData] = {
@@ -538,6 +541,7 @@ regions_to_locations: Dict[str, Dict[str, PCLocData]] = {
     Regions.lab_shutter: lab_shutter_locations,
     Regions.lab_main: lab_main_locations,
     Regions.lab_main_after_key: lab_main_after_key_locations,
+    Regions.lab_main_after_puzzle: lab_main_after_puzzle_locations,
     Regions.lab_station: lab_subway_locations,
     Regions.realgam: tower_pregate_locations,
     Regions.pre_final: [], # Dynamically modified

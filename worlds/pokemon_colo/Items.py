@@ -322,7 +322,11 @@ prog_items: List[ItemDesc] = [
     {'name': Items.Progression.data_rom,
      'count': 1,
      'classification': ItemClassification.progression,
-     'data': PCItemData(item_id=530, item_type=PCItemType.KEYITEM, amount=1)}
+     'data': PCItemData(item_id=530, item_type=PCItemType.KEYITEM, amount=1)},
+    {'name': Items.Progression.dna_sample, # There are 18 DNA Samples ID 512-529
+     'count': 3,
+     'classification': ItemClassification.progression,
+     'data': PCItemData(item_id=512, item_type=PCItemType.KEYITEM, amount=1)}
 ]
 
 colosseum_round_items: List[ItemDesc] = [
@@ -381,10 +385,6 @@ useful_items: List[ItemDesc] = [
      'count': 1,
      'classification': ItemClassification.useful,
      'data': PCItemData(item_id=547, item_type=PCItemType.KEYITEM, amount=1)},
-    {'name': Items.Useful.dna_sample, # There are 18 DNA Samples ID 512-529
-     'count': 3,
-     'classification': ItemClassification.useful,
-     'data': PCItemData(item_id=512, item_type=PCItemType.KEYITEM, amount=1)},
     {'name': Items.Useful.masterball,
      'count': 1,
      'classification': ItemClassification.useful,

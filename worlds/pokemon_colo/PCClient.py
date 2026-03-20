@@ -325,6 +325,14 @@ class PCContext(BaseContext):
 
             if self.check_ram(pc_loc_data, pc_loc_data.ram_info.ram_addr, current_map):
                 self.locations_checked.add(loc)
+                # Some locations are missable (for example trainiers after Dakim change their bit flags)
+                # If a Location has been reached, but the linked one hasnt and 
+                # cant be reached anymore normally we add it here
+                if pc_loc_data.links_to is not None:
+                    for missing_loc_id in local_missing:
+                        if self.location_names.lookup_in_game(missing_loc_id) == pc_loc_data.links_to:
+                            self.locations_checked.add(missing_loc_id)
+                            break
 
         await self.check_locations(self.locations_checked)
         # Special stuff to check if game has been cleared

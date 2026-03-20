@@ -22,7 +22,8 @@ class ColosseumRules:
         self.options = world.options
         self.world = world
         self.location_rules = {
-            Locations.Trainers.willie_rebattle: self.access_pyrite,
+            Locations.Trainers.willie_rebattle: self.access_pyrite, #after defeating mirror b
+            Locations.Trainers.aidel_rebattle: self.access_mt_battle and self.access_agate and self.has_small_tablet, #after getting pda contact from eugen
             Locations.Trainers.justy: self.do_justy,
             Locations.Misc.tm27: self.do_justy,
             Locations.Trainers.hader: self.access_under,
@@ -388,6 +389,9 @@ class ColosseumRules:
     
     def has_jail_key(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.jail_key, self.player)
+    
+    def has_small_tablet(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.small_tablet, self.player)
 
     def access_realgam(self, state: CollectionState) -> bool:
         init_state = state.has(Items.Progression.region_unlock, self.player, 4)

@@ -1,7 +1,7 @@
 class Locations:
     class Trainers:
         willie = "Outside-City Stand - Trainer Willie Defeated"
-        willie_rebattle = "Outside-City Stand - Trainer Willie Rebattled"
+        willie_rebattle = "Outside-City Stand - Trainer Willie Rebattled after defeating Mirror B."
         folly = "Phenac City - Shady Guy Folly Defeated"
         wakin = "Phenac City - Team Snagem Grunt Wakin Defeated"
         folly_1 = "Phenac City - Miror B. Peon Folly Defeated"
@@ -20,7 +20,9 @@ class Locations:
         kaib = "Phenac City - Roller Boy Kaib Defeated"
         drig = "Phenac City - Fun Old Man Drig Defeated"
         emok = "Pyrite Town - Chaser Emok Defeated"
+        emok_rebattle = "Pyrite Town - Chaser Emok Rebattled after defeating Dakim"
         calda = "Pyrite Town - Chaser Calda Defeated"
+        calda_rebattle = "Pyrite Town - Chaser Calda Rebattled after defeating Dakim"
         lon = "Pyrite Town - Roller Boy Lon Defeated"
         vant = "Pyrite Town - Rider Vant Defeated"
         nover = "Pyrite Town - Rider Nover Defeated"
@@ -74,7 +76,8 @@ class Locations:
         dakim = "Mt. Battle - Cipher Admin Dakim Defeated"
         hader = "Pyrite Town - Bodybuilder Hader Defeated"
         dury = "Agate Village - Cooltrainer Dury Defeated"
-        aidel = "Mt. Battle - Athlete Aidel Defeated"
+        aidel = "Mt. Battle - Athlete Aidel Defeated"        
+        aidel_rebattle = "Mt. Battle - Trainer Aidel Rebattled after getting PdA contact from Eugen"
         zada = "The Under - Hunter Zada Defeated"
         gurks = "The Under - Chaser Gurks Defeated"
         kloak = "The Under - Cipher Peon Kloak Defeated"

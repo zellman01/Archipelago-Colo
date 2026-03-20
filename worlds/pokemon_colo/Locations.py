@@ -1,4 +1,4 @@
-from typing import NamedTuple, List
+from typing import NamedTuple, List, Optional
 from BaseClasses import Location
 from .Strings import Locations, Regions
 from typing import Dict, List, TYPE_CHECKING
@@ -19,6 +19,7 @@ class PCLocData(NamedTuple):
     map_id: List[int] = [-2] # To ensure that if a map ID is not important it is not unnecessarily checked in the client
     code: List[int] = [-1]
     type: PCLocType = PCLocType.NONE
+    links_to: Optional[str] = None
     debug: DebugInfo = None
 
 class ColosseumLocation(Location):
@@ -30,7 +31,7 @@ start_locations: Dict[str, PCLocData] = {
 
 outside_city_locations: Dict[str, PCLocData] = {
     Locations.Trainers.willie: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC5, bit_pos=7), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
-    Locations.Trainers.willie_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
+    Locations.Trainers.willie_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
     Locations.Misc.bartender_gives_5_pokeballs: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=1), type=PCLocType.EVENT, map_id=[OUTSKIRT_STAND_ID])
 }
 
@@ -123,6 +124,9 @@ phenac_colosseum_locations = phenac_colosseum_r1_locations | phenac_colosseum_r2
 pyrite_locations: Dict[str, PCLocData] = {
     Locations.Trainers.emok: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.calda: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC9, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
+    Locations.Trainers.emok_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
+    Locations.Trainers.calda_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
+    #TODO Lon, Vant, nover, diogo, leba, divel are all reset after you leave the screen. Connection loss or async run are a problem
     Locations.Trainers.lon: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDC3, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.vant: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDC3, bit_pos=4), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.nover: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDC3, bit_pos=0), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
@@ -336,6 +340,7 @@ mt_battle_locations: Dict[str, PCLocData] = {
     Locations.Trainers.berin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=4), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.dakim: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.aidel: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
+    Locations.Trainers.aidel_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID], links_to=Locations.Trainers.aidel),
     Locations.ShadowPokemon.entei_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=0), type=PCLocType.SHADOW, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Chests.mt_battle_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E4, bit_pos=4), type=PCLocType.CHEST, map_id=[MT_BATTLE_LOBBY_ID]),
     Locations.Misc.time_flute: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=2), type=PCLocType.ITEM, map_id=[MT_BATTLE_LOBBY_ID])

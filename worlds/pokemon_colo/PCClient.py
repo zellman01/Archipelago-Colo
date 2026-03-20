@@ -279,7 +279,23 @@ class PCContext(BaseContext):
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0D and byte4 == 0xE8:
             map = PYRITE_CAVE_AFTER_SEWERS_ID        
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0F and byte4 == 0xFC:
-            map = PYRITE_CAVE_HIDEOUT_ID
+            map = PYRITE_CAVE_HIDEOUT_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x09 and byte4 == 0x74:
+            map = AGATE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x19 and byte4 == 0x7C:
+            map = AGATE_SIDE_CAVE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x19 and byte4 == 0x30:
+            map = AGATE_MAIN_CAVE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x19 and byte4 == 0xC8:
+            map = AGATE_PURIFICATION_STONE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1B and byte4 == 0x44:
+            map = AGATE_EUGEN_HOME_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x02 and byte4 == 0x54:
+            map = MT_BATTLE_LOBBY_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x02 and byte4 == 0xA0:
+            map = MT_BATTLE_PLATFORMS_1_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x02 and byte4 == 0x08:
+            map = MT_BATTLE_OUTSIDE_ID
         return map  
 
     async def pc_check_locations(self):

@@ -200,6 +200,7 @@ class Locations:
         ein_file_c = "Agate Forest - Ein File C Get"
         small_tablet = "Agate Village - Small Tablet Get"
         f_disk = "Mt. Battle - F-Disk Get"
+        time_flute = "Mt. Battle - Time Flute Get"
         jail_key = "Pyrite Town - Jail Key Get"
         elevator_key = "Pyrite Town Reath's Cell - Elevator Key Get"
         powerup_part = "The Under - Powerup Part Get"

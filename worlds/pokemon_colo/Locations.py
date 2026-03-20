@@ -79,7 +79,7 @@ pregym_locations: Dict[str, PCLocData] = {
     Locations.Trainers.dugo: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BECA, bit_pos=6), type=PCLocType.TRAINER, map_id=[PREGYM_ID]),
     Locations.Trainers.gwin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BECA, bit_pos=7), type=PCLocType.TRAINER, map_id=[PREGYM_ID]),
     Locations.Trainers.justy: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=6), type=PCLocType.TRAINER, map_id=[PREGYM_ID]),
-    Locations.Misc.tm27: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=6), type=PCLocType.TRAINER, map_id=[PREGYM_ID])
+    Locations.Misc.tm27: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=6), type=PCLocType.ITEM, map_id=[PREGYM_ID])
 }
 
 phenac_colosseum_r1_locations: Dict[str, PCLocData] = {
@@ -258,23 +258,23 @@ pyrite_cave_extra: Dict[str, PCLocData] = {
 pyrite_cave_locations = pyrite_cave_entrance_locations | pyrite_cave_1f_locations | pyrite_cave_b1f_locations | pyrite_cave_sewers_locations | pyrite_cave_after_sewers_locations | pyrite_cave_north_sewers_locations | pyrite_cave_miror_hideout
 
 agate_locations: Dict[str, PCLocData] = {
-    Locations.Misc.small_tablet: None,
+    Locations.Misc.small_tablet: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED3, bit_pos=2), type=PCLocType.TRAINER, map_id=[AGATE_EUGEN_HOME_ID]),
     Locations.Misc.master_ball: None,
-    Locations.Trainers.skof: None,
+    Locations.Trainers.skof: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C17E, bit_pos=3), type=PCLocType.TRAINER, map_id=[AGATE_ID]),
     Locations.Trainers.dury: None,
-    Locations.Chests.agate_chest_1: None,
-    Locations.Chests.agate_chest_2: None,
-    Locations.Chests.agate_chest_3: None,
-    Locations.Chests.agate_chest_4: None
+    Locations.Chests.agate_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5D, bit_pos=7), type=PCLocType.CHEST, map_id=[AGATE_ID]),
+    Locations.Chests.agate_chest_2:  PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5C, bit_pos=0), type=PCLocType.CHEST, map_id=[AGATE_ID]),
+    Locations.Chests.agate_chest_3: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=5), type=PCLocType.CHEST, map_id=[AGATE_SIDE_CAVE_ID]),
+    Locations.Chests.agate_chest_4: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=6), type=PCLocType.CHEST, map_id=[AGATE_SIDE_CAVE_ID])
 }
 
 agate_locations_2: Dict[str, PCLocData] = {
-    Locations.Misc.ein_file_c: None,
-    Locations.Trainers.doven: None,
-    Locations.Trainers.silton: None,
-    Locations.Trainers.kass: None,
-    Locations.Trainers.skrub: None,
-    Locations.ShadowPokemon.hitmontop_capture: None
+    Locations.Misc.ein_file_c: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5C, bit_pos=7), type=PCLocType.ITEM, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.Trainers.doven: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F6, bit_pos=0), type=PCLocType.TRAINER, map_id=[AGATE_MAIN_CAVE_ID]),
+    Locations.Trainers.silton: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECC, bit_pos=1), type=PCLocType.TRAINER, map_id=[AGATE_MAIN_CAVE_ID]),
+    Locations.Trainers.kass: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECC, bit_pos=4), type=PCLocType.TRAINER, map_id=[AGATE_MAIN_CAVE_ID]),
+    Locations.Trainers.skrub: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED3, bit_pos=0), type=PCLocType.TRAINER, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.hitmontop_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=7), type=PCLocType.SHADOW, map_id=[AGATE_PURIFICATION_STONE_ID])
 }
 
 agate_locations = agate_locations | agate_locations_2
@@ -324,20 +324,21 @@ relic_stone_locations: Dict[str, PCLocData] = {
 }
 
 mt_battle_locations: Dict[str, PCLocData] = {
-    Locations.Misc.f_disk: None,
-    Locations.Trainers.turo: None,
-    Locations.Trainers.drovic: None,
-    Locations.Trainers.kimit: None,
-    Locations.Trainers.riden: None,
-    Locations.Trainers.telia: None,
-    Locations.Trainers.nortz: None,
-    Locations.Trainers.weeg: None,
-    Locations.Trainers.kison: None,
-    Locations.Trainers.berin: None,
-    Locations.Trainers.dakim: None,
-    Locations.Trainers.aidel: None,
-    Locations.ShadowPokemon.entei_capture: None,
-    Locations.Chests.mt_battle_chest_1: None
+    Locations.Misc.f_disk: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE61, bit_pos=2), type=PCLocType.ITEM, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.turo: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F6, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.drovic: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=2), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.kimit: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=3), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.riden: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=2), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.telia: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=6), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.nortz: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=1), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.weeg: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.kison: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.berin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=4), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.dakim: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Trainers.aidel: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
+    Locations.ShadowPokemon.entei_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=0), type=PCLocType.SHADOW, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Chests.mt_battle_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E4, bit_pos=4), type=PCLocType.CHEST, map_id=[MT_BATTLE_LOBBY_ID]),
+    Locations.Misc.time_flute: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=2), type=PCLocType.ITEM, map_id=[MT_BATTLE_LOBBY_ID])
 }
 
 under_1_locations: Dict[str, PCLocData] = {

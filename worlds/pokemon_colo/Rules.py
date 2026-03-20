@@ -22,8 +22,10 @@ class ColosseumRules:
         self.options = world.options
         self.world = world
         self.location_rules = {
-            Locations.Trainers.willie_rebattle: self.access_pyrite, #after defeating mirror b
-            Locations.Trainers.aidel_rebattle: self.access_mt_battle and self.access_agate and self.has_small_tablet, #after getting pda contact from eugen
+            Locations.Trainers.willie_rebattle: self.has_defeated_mirorb, #after defeating mirror b
+            Locations.Trainers.aidel_rebattle: self.has_defeated_dakim, #after defeating dakim and getting pda contact from eugen
+            Locations.Trainers.emok_rebattle: self.has_defeated_dakim, #after defating dakim
+            Locations.Trainers.calda_rebattle: self.has_defeated_dakim, #after defeating dakim
             Locations.Trainers.justy: self.do_justy,
             Locations.Misc.tm27: self.do_justy,
             Locations.Trainers.hader: self.access_under,
@@ -390,8 +392,11 @@ class ColosseumRules:
     def has_jail_key(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.jail_key, self.player)
     
-    def has_small_tablet(self, state: CollectionState) -> bool:
-        return state.has(Items.Progression.small_tablet, self.player)
+    def has_defeated_dakim(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.dakim_defeated, self.player)
+    
+    def has_defeated_mirorb(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.mirorb_defeated, self.player)
 
     def access_realgam(self, state: CollectionState) -> bool:
         init_state = state.has(Items.Progression.region_unlock, self.player, 4)

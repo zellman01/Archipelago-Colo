@@ -32,12 +32,12 @@ start_locations: Dict[str, PCLocData] = {
 outside_city_locations: Dict[str, PCLocData] = {
     Locations.Trainers.willie: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC5, bit_pos=7), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
     Locations.Trainers.willie_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
-    Locations.Misc.bartender_gives_5_pokeballs: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=1), type=PCLocType.EVENT, map_id=[OUTSKIRT_STAND_ID])
+    Locations.Misc.bartender_gives_5_pokeballs: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=1), type=PCLocType.ITEM, map_id=[OUTSKIRT_STAND_ID])
 }
 
 phenac_locations: Dict[str, PCLocData] = {
     Locations.Misc.rui: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC4, bit_pos=5), type=PCLocType.EVENT, map_id=[PHENAC_CITY_ID]),
-    Locations.Misc.tm41: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BECA, bit_pos=0), type=PCLocType.EVENT, map_id=[PHENAC_CITY_ID]),
+    Locations.Misc.tm41: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BECA, bit_pos=0), type=PCLocType.ITEM, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.folly: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC4, bit_pos=4), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.wakin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C11E, bit_pos=6), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.folly_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EA, bit_pos=6), type=PCLocType.TRAINER, map_id=[MAYOR_HOUSE_ID]),
@@ -249,6 +249,7 @@ pyrite_cave_miror_hideout: Dict[str, PCLocData] = {
     Locations.Misc.plusle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=5), type=PCLocType.EVENT, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
     Locations.Misc.ein_file_p: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=7), type=PCLocType.ITEM, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
     Locations.Trainers.mirorb: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
+    Locations.Misc.mirorb_defeated: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=3), type=PCLocType.EVENT, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
     Locations.ShadowPokemon.sudowoodo_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=6), type=PCLocType.SHADOW, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
     Locations.Chests.pyrite_cave_chest_9: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C084, bit_pos=1), type=PCLocType.CHEST, map_id=[PYRITE_CAVE_HIDEOUT_ID]),
     Locations.Chests.pyrite_cave_chest_10: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5D, bit_pos=5), type=PCLocType.CHEST, map_id=[PYRITE_CAVE_HIDEOUT_ID])
@@ -339,6 +340,7 @@ mt_battle_locations: Dict[str, PCLocData] = {
     Locations.Trainers.kison: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.berin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=4), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.dakim: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
+    Locations.Misc.dakim_defeated: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.EVENT, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.aidel: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
     Locations.Trainers.aidel_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID], links_to=Locations.Trainers.aidel),
     Locations.ShadowPokemon.entei_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=0), type=PCLocType.SHADOW, map_id=[MT_BATTLE_PLATFORMS_1_ID]),

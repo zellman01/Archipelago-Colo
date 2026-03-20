@@ -192,6 +192,8 @@ class Locations:
         espeon_umbreon = "Start - Obtain Espeon and Umbreon"
         rui = "Phenac City - Rui Saved"
         complete_pre_gym = "Pre Gym - Finish Pre Gym"
+        dakim_defeated = "Mt. Battle cleared"
+        mirorb_defeated = "Pyrite Cave Miror Hideout cleared"
         tm41 = "Phenac City - Obtain TM41"
         tm46 = "Pyrite Town Police Department - Obtain TM46"
         tm06 = "Pyrite Colosseum - Obtain TM06"
@@ -453,7 +455,9 @@ class Items:
         card_key = "Card Key"
         down_st_key = "Down St. Key"
         data_rom = "Data Rom"
-        dna_sample = "DNA Sample"
+		dna_sample = "DNA Sample
+		dakim_defeated = "Mt. Battle cleared"
+		mirorb_defeated = "Pyrite Cave Hideout cleared"
     class Useful:
         l_disk = "L-Disk"
         d_disk = "D-Disk"

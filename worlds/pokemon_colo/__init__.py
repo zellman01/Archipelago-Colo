@@ -172,10 +172,23 @@ class ColosseumWorld(World):
         win_loc.place_locked_item(goal_item)
         self.items_created += 1
 
+    def event_items(self) -> None:
+        # Set event items
+        defeat_dakim_loc = self.multiworld.get_location(Locations.Misc.dakim_defeated, self.player)
+        dakim_event = ColosseumItem(Items.Progression.dakim_defeated, ItemClassification.progression, None, self.player)
+        defeat_dakim_loc.place_locked_item(dakim_event)
+        self.items_created += 1
+        
+        defeat_mirorb_loc = self.multiworld.get_location(Locations.Misc.mirorb_defeated, self.player)
+        mirorb_event = ColosseumItem(Items.Progression.mirorb_defeated, ItemClassification.progression, None, self.player)
+        defeat_mirorb_loc.place_locked_item(mirorb_event)
+        self.items_created += 1
+
     def create_items(self) -> None:
         list = self.used_items.copy()
         created_items: List[ColosseumItem] = []
         self.optioned_items()
+        self.event_items()
         items_added = self.items_created
         collected_names = [item.name for item in self.multiworld.precollected_items[self.player]]
 

@@ -439,7 +439,7 @@ lab_outside_gate_locations: Dict[str, PCLocData] = {
     Locations.Chests.lab_chest_1: None
 }
 
-lab_locations = lab_outside_gate_locations | lab_subway_locations | lab_main_locations | lab_shutter_locations | lab_main_after_key_locations
+lab_locations = lab_outside_gate_locations | lab_subway_locations | lab_main_locations | lab_shutter_locations | lab_main_after_key_locations | lab_main_after_puzzle_locations
 
 tower_pregate_locations: Dict[str, PCLocData] = {
     Locations.Misc.red_badge: None,

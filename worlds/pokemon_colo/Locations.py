@@ -19,7 +19,6 @@ class PCLocData(NamedTuple):
     map_id: List[int] = [-2] # To ensure that if a map ID is not important it is not unnecessarily checked in the client
     code: List[int] = [-1]
     type: PCLocType = PCLocType.NONE
-    links_to: Optional[str] = None
     debug: DebugInfo = None
 
 class ColosseumLocation(Location):
@@ -176,30 +175,30 @@ pyrite_locations: Dict[str, PCLocData] = {
 }
 
 rematches_dakim_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.aidel_rematch: PCLocData(ram_info=aidel1_ram, type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID], links_to=Locations.Trainers.aidel),
+    Locations.Trainers.aidel_rematch: PCLocData(ram_info=aidel1_ram, type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
 }
 
 rematches_dakim_pyrite_locations: Dict[str, PCLocData] = {    
-    Locations.Trainers.emok_rematch: PCLocData(ram_info=emok1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
-    Locations.Trainers.calda_rematch: PCLocData(ram_info=calda1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
+    Locations.Trainers.emok_rematch: PCLocData(ram_info=emok1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID]),
+    Locations.Trainers.calda_rematch: PCLocData(ram_info=calda1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID]),
 }
 
 rematches_dakim_pyrite_building_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.kai_rematch: PCLocData(ram_info=kai1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.kai),
-    Locations.Trainers.pike_rematch: PCLocData(ram_info=pike1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.pike),
-    Locations.Trainers.geats_rematch: PCLocData(ram_info=geats1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geats),
-    Locations.Trainers.geare_rematch: PCLocData(ram_info=geare1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geare),
-    Locations.Trainers.akmen_rematch: PCLocData(ram_info=akmen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.akmen),
-    Locations.Trainers.loba_rematch: PCLocData(ram_info=loba1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.loba),
-    Locations.Trainers.raleen_rematch: PCLocData(ram_info=raleen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.raleen),
-    Locations.Trainers.tura_rematch: PCLocData(ram_info=tura1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.tura),
-    Locations.Trainers.toti_rematch: PCLocData(ram_info=toti1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.toti),
-    Locations.Trainers.elidi_rematch: PCLocData(ram_info=elidi1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.elidi),
+    Locations.Trainers.kai_rematch: PCLocData(ram_info=kai1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID]),
+    Locations.Trainers.pike_rematch: PCLocData(ram_info=pike1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID]),
+    Locations.Trainers.geats_rematch: PCLocData(ram_info=geats1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.geare_rematch: PCLocData(ram_info=geare1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.akmen_rematch: PCLocData(ram_info=akmen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.loba_rematch: PCLocData(ram_info=loba1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.raleen_rematch: PCLocData(ram_info=raleen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.tura_rematch: PCLocData(ram_info=tura1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.toti_rematch: PCLocData(ram_info=toti1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.elidi_rematch: PCLocData(ram_info=elidi1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID]),
 }
 
 rematches_mirorb_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.willie_rematch: PCLocData(ram_info=willie1_ram, type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
-    Locations.Trainers.doken_rematch: PCLocData(ram_info=doken1_ram, type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID], links_to=Locations.Trainers.doken),
+    Locations.Trainers.willie_rematch: PCLocData(ram_info=willie1_ram, type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID]),
+    Locations.Trainers.doken_rematch: PCLocData(ram_info=doken1_ram, type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID]),
 }
 
 pyrite_2_locations: Dict[str, PCLocData] = {

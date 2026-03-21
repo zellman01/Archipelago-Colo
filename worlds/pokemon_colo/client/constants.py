@@ -70,7 +70,7 @@ MT_BATTLE_OUTSIDE_ID = 32
 
 # Primary pointer addresses
 PRIMARY_POINTER = 0x8047ADB8
-AP_ITEM_INDEX_OFFSET = 0xB87
+AP_ITEM_INDEX_OFFSET = 0xB86
 ITEM_START_OFFSET = 0x7974
 B1_S1_OFFSET = 0xB9C
 SLOT_OFFSET = 0x138 # Only used to add to B1_S1 to check where the next empty slot is for a new shadow pokemon

@@ -153,7 +153,7 @@ phenac_colosseum_r4_locations: Dict[str, PCLocData] = {
 phenac_colosseum_locations = phenac_colosseum_r1_locations | phenac_colosseum_r2_locations | phenac_colosseum_r3_locations | phenac_colosseum_r4_locations
 
 pyrite_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.hader: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=0), type=PCLocType.ITEM, map_id=[PYRITE_ID]),
+    Locations.Trainers.hader: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=0), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.emok: PCLocData(ram_info=[emok_ram, emok1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.calda: PCLocData(ram_info=[calda_ram, calda1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     #TODO Lon, Vant, nover, diogo, leba, divel are all reset after you leave the screen. Connection loss or async run are a problem
@@ -175,7 +175,7 @@ pyrite_locations: Dict[str, PCLocData] = {
 }
 
 rematches_dakim_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.aidel_rematch: PCLocData(ram_info=aidel1_ram, type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
+    Locations.Trainers.aidel_rematch: PCLocData(ram_info=aidel1_ram, type=PCLocType.REMATCH, map_id=[MT_BATTLE_OUTSIDE_ID]),
 }
 
 rematches_dakim_pyrite_locations: Dict[str, PCLocData] = {    
@@ -198,7 +198,7 @@ rematches_dakim_pyrite_building_locations: Dict[str, PCLocData] = {
 
 rematches_mirorb_locations: Dict[str, PCLocData] = {
     Locations.Trainers.willie_rematch: PCLocData(ram_info=willie1_ram, type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID]),
-    Locations.Trainers.doken_rematch: PCLocData(ram_info=doken1_ram, type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID]),
+    Locations.Trainers.doken_rematch: PCLocData(ram_info=doken1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_ROOF_ID]),
 }
 
 pyrite_2_locations: Dict[str, PCLocData] = {
@@ -319,7 +319,7 @@ pyrite_cave_extra: Dict[str, PCLocData] = {
 pyrite_cave_locations = pyrite_cave_entrance_locations | pyrite_cave_1f_locations | pyrite_cave_b1f_locations | pyrite_cave_sewers_locations | pyrite_cave_after_sewers_locations | pyrite_cave_north_sewers_locations | pyrite_cave_miror_hideout
 
 agate_locations: Dict[str, PCLocData] = {
-    Locations.Misc.small_tablet: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED3, bit_pos=2), type=PCLocType.TRAINER, map_id=[AGATE_EUGEN_HOME_ID]),
+    Locations.Misc.small_tablet: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED3, bit_pos=2), type=PCLocType.ITEM, map_id=[AGATE_EUGEN_HOME_ID]),
     Locations.Misc.dukings_mail_read: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C122, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_EUGEN_HOME_ID]),
     Locations.Misc.master_ball: None,
     Locations.Trainers.skof: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C17E, bit_pos=3), type=PCLocType.TRAINER, map_id=[AGATE_ID]),

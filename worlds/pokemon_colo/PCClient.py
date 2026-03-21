@@ -323,7 +323,7 @@ class PCContext(BaseContext):
                 raise Exception(f"ERROR: {loc} passed previous check but is not able to provice type or map_id. Please inform the Pokemon Colosseum AP devs.")
 
 
-            if self.check_ram(pc_loc_data, pc_loc_data.ram_info.ram_addr, current_map):
+            if self.check_all_ram(pc_loc_data, current_map):
                 self.locations_checked.add(loc)
                 # Some locations are missable (for example trainiers after Dakim change their bit flags)
                 # If a Location has been reached, but the linked one hasnt and 
@@ -337,11 +337,25 @@ class PCContext(BaseContext):
         await self.check_locations(self.locations_checked)
         # Special stuff to check if game has been cleared
 
-    def check_ram(self, loc_data: PCLocData, addr: int, cur_map) -> bool:
+    def check_all_ram(self, loc_data: PCLocData, cur_map) -> bool:
+        if isinstance(loc_data.ram_info, list):            
+            for ram_info in loc_data.ram_info:
+                if self.check_ram(loc_data, ram_info, cur_map):
+                    return True
+            return False
+        else:
+            return self.check_ram(loc_data, loc_data.ram_info, cur_map)
+
+    def check_ram(self, loc_data: PCLocData, ram_info: PCRamData, cur_map) -> bool:
+        if ram_info.ram_addr is None or ram_info.ptr_offset is None or ram_info.bit_pos is None:
+            return False
+
         # Get intitial RAM data from address
         ram_data = 0x0
-        if loc_data.ram_info.ptr:
-            ram_data = read_byte(ptr_addr(addr, loc_data.ram_info.ptr_offset))
+        addr:int = ram_info.ram_addr
+
+        if ram_info.ptr:
+            ram_data = read_byte(ptr_addr(addr, ram_info.ptr_offset))
         else:
             ram_data = read_byte(addr)
 
@@ -352,10 +366,10 @@ class PCContext(BaseContext):
             case PCLocType.START:
                 if cur_map == OUTSKIRT_STAND_ID:
                     return True
-            case PCLocType.TRAINER:
+            case PCLocType.TRAINER | PCLocType.REMATCH:
                 if self.trainer_win:
                     bit = bits(ram_data)
-                    if (bit[loc_data.ram_info.bit_pos]):
+                    if (bit[ram_info.bit_pos]):
                         self.trainer_win = False
                         return True
                 if not self.trainer_win and read_byte(IN_BATTLE) and read_byte(BATTLE_WIN_CHECK) == 0x02:
@@ -363,11 +377,11 @@ class PCContext(BaseContext):
             case PCLocType.SHADOW:
                 if read_byte(IN_BATTLE):
                     bit = bits(ram_data)
-                    if (bit[loc_data.ram_info.bit_pos]):
+                    if (bit[ram_info.bit_pos]):
                         return True
             case PCLocType.CHEST | PCLocType.EVENT:
                 bit = bits(ram_data)
-                if (bit[loc_data.ram_info.bit_pos]):
+                if (bit[ram_info.bit_pos]):
                     return True
         return False
 

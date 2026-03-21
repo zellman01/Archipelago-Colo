@@ -9,6 +9,7 @@ class PCLocType(Enum):
     CHEST = 3
     ITEM = 4
     EVENT = 5
+    REMATCH = 6
 
 class PCItemType(Enum):
     NONE = -1

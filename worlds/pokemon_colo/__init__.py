@@ -175,17 +175,17 @@ class ColosseumWorld(World):
     def event_items(self) -> None:
         # Set event items
         defeat_dakim_loc = self.multiworld.get_location(Locations.Misc.dakim_defeated, self.player)
-        dakim_event = ColosseumItem(Items.Progression.dakim_defeated, ItemClassification.progression, None, self.player)
+        dakim_event = ColosseumItem(Items.Progression.dakim_defeated, ItemClassification.progression, self.item_name_to_id[Items.Progression.dakim_defeated], self.player)
         defeat_dakim_loc.place_locked_item(dakim_event)
         self.items_created += 1
         
         defeat_mirorb_loc = self.multiworld.get_location(Locations.Misc.mirorb_defeated, self.player)
-        mirorb_event = ColosseumItem(Items.Progression.mirorb_defeated, ItemClassification.progression, None, self.player)
+        mirorb_event = ColosseumItem(Items.Progression.mirorb_defeated, ItemClassification.progression, self.item_name_to_id[Items.Progression.mirorb_defeated], self.player)
         defeat_mirorb_loc.place_locked_item(mirorb_event)
         self.items_created += 1
         
         dukings_mail_read = self.multiworld.get_location(Locations.Misc.dukings_mail_read, self.player)
-        dukings_mail_event = ColosseumItem(Items.Progression.dukings_mail_read, ItemClassification.progression, None, self.player)
+        dukings_mail_event = ColosseumItem(Items.Progression.dukings_mail_read, ItemClassification.progression, self.item_name_to_id[Items.Progression.dukings_mail_read], self.player)
         dukings_mail_read.place_locked_item(dukings_mail_event)
         self.items_created += 1
 
@@ -256,6 +256,7 @@ class ColosseumWorld(World):
             "ColosseumSanity": self.options.colosseum_sanity.value,
             "PostgameShadowPokemon": self.options.postgame_shadow_pokemon.value,
             "MirakleB": self.options.mirakle_b.value,
+            "Rematches": self.options.rematches.value,
             "Seed": self.multiworld.seed,
             "TotalLocations": self.location_count(),
             "Version": CLIENT_VERSION,

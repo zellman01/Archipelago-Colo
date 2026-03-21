@@ -10,6 +10,7 @@ option_presets = {
         "difficulty": 1,
         "add_mt_battle": False,
         "mirakle_b": False,
+        "rematches": False,
         "colosseum_sanity": 0,
     },
     "Default Quilava": {
@@ -23,6 +24,7 @@ option_presets = {
         "difficulty": 1,
         "add_mt_battle": False,
         "mirakle_b": False,
+        "rematches": False,
         "colosseum_sanity": 0,
     },
     "Default Croconaw": {
@@ -36,6 +38,7 @@ option_presets = {
         "difficulty": 1,
         "add_mt_battle": False,
         "mirakle_b": False,
+        "rematches": False,
         "colosseum_sanity": 0,
     }
 }

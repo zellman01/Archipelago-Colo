@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from Options import DefaultOnToggle, Toggle, Choice, NamedRange, PerGameCommonOptions
+from worlds.ladx.Options import DefaultOffToggle
 
 class Goal(Choice):
     """
@@ -83,6 +84,10 @@ class MirakleB(Toggle):
     """Adds Mirakle B to the list of locations to be checked"""
     display_name = "Mirakle B Fight"
 
+class Rematches(DefaultOffToggle):
+    """Add rematches with trainers to the list of locations to be checked"""
+    display_name = "Rematches"
+
 class ColosseumSanity(Choice):
     """Enables each round of a colosseum to be a location to check. (NOT IMPLEMENTED)
     Off: Turns the setting off, disables all colosseum round items, and all colosseum battles/completes. Pyrite Colosseum Round 0 is always included as it is part of the story.
@@ -109,3 +114,4 @@ class ColosseumOptions(PerGameCommonOptions):
     mirakle_b: MirakleB
     rui_unlock: RuiUnlock
     colosseum_sanity: ColosseumSanity
+    rematches: Rematches

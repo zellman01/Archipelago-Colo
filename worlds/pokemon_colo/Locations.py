@@ -15,7 +15,7 @@ class DebugInfo(NamedTuple):
     loc_name: str = ""
 
 class PCLocData(NamedTuple):
-    ram_info: PCRamData = None
+    ram_info: PCRamData | List[PCRamData] = None
     map_id: List[int] = [-2] # To ensure that if a map ID is not important it is not unnecessarily checked in the client
     code: List[int] = [-1]
     type: PCLocType = PCLocType.NONE
@@ -25,13 +25,16 @@ class PCLocData(NamedTuple):
 class ColosseumLocation(Location):
     game: str = "Pokemon Colosseum"
 
+
+aidel_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3)
+aidel1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=5)
+
 start_locations: Dict[str, PCLocData] = {
     Locations.Misc.espeon_umbreon: PCLocData(ram_info=PCRamData(MAP_ID_ADDR), type=PCLocType.START, map_id=[OUTSKIRT_STAND_ID])
 }
 
 outside_city_locations: Dict[str, PCLocData] = {
     Locations.Trainers.willie: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC5, bit_pos=7), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
-    Locations.Trainers.willie_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
     Locations.Misc.bartender_gives_5_pokeballs: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=1), type=PCLocType.ITEM, map_id=[OUTSKIRT_STAND_ID])
 }
 
@@ -122,6 +125,7 @@ phenac_colosseum_r4_locations: Dict[str, PCLocData] = {
 phenac_colosseum_locations = phenac_colosseum_r1_locations | phenac_colosseum_r2_locations | phenac_colosseum_r3_locations | phenac_colosseum_r4_locations
 
 pyrite_locations: Dict[str, PCLocData] = {
+    Locations.Trainers.hader: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=0), type=PCLocType.ITEM, map_id=[PYRITE_ID]),
     Locations.Trainers.emok: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.calda: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC9, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     #TODO Lon, Vant, nover, diogo, leba, divel are all reset after you leave the screen. Connection loss or async run are a problem
@@ -142,21 +146,33 @@ pyrite_locations: Dict[str, PCLocData] = {
     Locations.Misc.jail_key: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5F, bit_pos=5), type=PCLocType.ITEM, map_id=[PYRITE_POLICE_DEPARTMENT_ID]),
 }
 
-pyrite_1_locations: Dict[str, PCLocData] = {    
-    Locations.Trainers.hader: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=0), type=PCLocType.ITEM, map_id=[PYRITE_ID]),
-    Locations.Trainers.kai_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=2), type=PCLocType.ITEM, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.kai),
-    Locations.Trainers.emok_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
-    Locations.Trainers.calda_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
-    Locations.Trainers.pike_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.pike),
-    Locations.Trainers.geats_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=4), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geats),
-    Locations.Trainers.geare_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geare),
-    Locations.Trainers.akmen_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.akmen),
-    Locations.Trainers.loba_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=7), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.loba),
-    Locations.Trainers.raleen_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=0), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.raleen),
-    Locations.Trainers.tura_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=1), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.tura),
-    Locations.Trainers.toti_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.toti),
-    Locations.Trainers.elidi_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.elidi),
+rematches_dakim_locations: Dict[str, PCLocData] = {
+    Locations.Trainers.aidel_rematch: PCLocData(ram_info=aidel1_ram, type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID], links_to=Locations.Trainers.aidel),
 }
+
+rematches_dakim_pyrite_locations: Dict[str, PCLocData] = {    
+    Locations.Trainers.emok_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=5), type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
+    Locations.Trainers.calda_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
+}
+
+rematches_dakim_pyrite_building_locations: Dict[str, PCLocData] = {
+    Locations.Trainers.kai_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.kai),
+    Locations.Trainers.pike_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=3), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.pike),
+    Locations.Trainers.geats_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=4), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geats),
+    Locations.Trainers.geare_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=5), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geare),
+    Locations.Trainers.akmen_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=6), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.akmen),
+    Locations.Trainers.loba_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=7), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.loba),
+    Locations.Trainers.raleen_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=0), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.raleen),
+    Locations.Trainers.tura_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=1), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.tura),
+    Locations.Trainers.toti_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.toti),
+    Locations.Trainers.elidi_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=3), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.elidi),
+}
+
+rematches_mirorb_locations: Dict[str, PCLocData] = {
+    Locations.Trainers.willie_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
+    Locations.Trainers.doken_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF6, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID], links_to=Locations.Trainers.doken),
+}
+
 
 pyrite_2_locations: Dict[str, PCLocData] = {
     Locations.Misc.elevator_key: None,
@@ -209,7 +225,6 @@ pyrite_building_roof_locations: Dict[str, PCLocData] = {
     Locations.Trainers.reath: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECF, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.Trainers.ferma: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECF, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.Trainers.doken: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID]),
-    Locations.Trainers.doken_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF6, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID], links_to=Locations.Trainers.doken),
     Locations.ShadowPokemon.remoraid_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=0), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.ShadowPokemon.mantine_capture:  PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=1), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.ShadowPokemon.qwilfish_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=2), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_ID])
@@ -356,8 +371,7 @@ mt_battle_locations: Dict[str, PCLocData] = {
     Locations.Trainers.berin: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E9, bit_pos=4), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Trainers.dakim: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Misc.dakim_defeated: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C102, bit_pos=5), type=PCLocType.EVENT, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
-    Locations.Trainers.aidel: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
-    Locations.Trainers.aidel_rebattle: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=5), type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID], links_to=Locations.Trainers.aidel),
+    Locations.Trainers.aidel: PCLocData(ram_info=[aidel_ram, aidel1_ram], type=PCLocType.TRAINER, map_id=[MT_BATTLE_OUTSIDE_ID]),
     Locations.ShadowPokemon.entei_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=0), type=PCLocType.SHADOW, map_id=[MT_BATTLE_PLATFORMS_1_ID]),
     Locations.Chests.mt_battle_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E4, bit_pos=4), type=PCLocType.CHEST, map_id=[MT_BATTLE_LOBBY_ID]),
     Locations.Misc.time_flute: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=2), type=PCLocType.ITEM, map_id=[MT_BATTLE_LOBBY_ID])
@@ -536,6 +550,10 @@ regions_to_locations: Dict[str, Dict[str, PCLocData]] = {
     Regions.phenac_colosseum_r3: [],
     Regions.phenac_colosseum_r4: [],
     Regions.outside_city: outside_city_locations,
+    Regions.rematches_dakim: rematches_dakim_locations,
+    Regions.rematches_dakim_pyrite: rematches_dakim_pyrite_locations,
+    Regions.rematches_dakim_pyrite_building: rematches_dakim_pyrite_building_locations,
+    Regions.rematches_mirorb: rematches_mirorb_locations,
     Regions.pyrite: pyrite_locations,
     Regions.pyrite_building : pyrite_building_locations,
     Regions.pyrite_cave: [], # Dynamically modified
@@ -553,7 +571,6 @@ regions_to_locations: Dict[str, Dict[str, PCLocData]] = {
     Regions.pyrite_colosseum_r2: [],
     Regions.pyrite_colosseum_r3: [],
     Regions.pyrite_colosseum_r4: [],
-    Regions.pyrite_1: pyrite_1_locations,
     Regions.pyrite_2: pyrite_2_locations,
     Regions.pyrite_jail_cell: pyrite_jail_cell_locations,
     Regions.construction: construction_locations,
@@ -624,4 +641,11 @@ def set_location_options(options: ColosseumOptions) -> Dict[str, Dict[str, PCLoc
     local_regions[Regions.pyrite_cave] = local_cave
     local_regions[Regions.purify] = local_relic
     local_regions[Regions.pre_final] = local_tower
+
+    if not options.rematches:
+        local_regions[Regions.rematches_dakim] = {}
+        local_regions[Regions.rematches_dakim_pyrite] = {}
+        local_regions[Regions.rematches_dakim_pyrite_building] = {}
+        local_regions[Regions.rematches_mirorb] = {}
+
     return local_regions

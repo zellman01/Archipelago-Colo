@@ -581,7 +581,7 @@ def main(*launch_args: str):
         try:
             pc_usa_manifest = pc_usa_patch.read_contents(args.apcolo_file)
             server_addr = pc_usa_manifest["server"]
-            rom_path = pc_usa_patch.patch(args.apcolo_file)
+            pc_usa_patch.patch(args.apcolo_file)
         except Exception as ex:
             logger.error("Unable to patch the Pokemon Colosseum ROM as expected. Additional details:\n" + str(ex))
             Utils.messagebox("Cannot Patch Pokemon Colosseum", "Unable to patch your Pokemon Colosseum ROM as " +

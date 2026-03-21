@@ -24,8 +24,7 @@ class ColosseumRules:
         self.location_rules = {
             Locations.Trainers.willie_rebattle: self.has_defeated_mirorb, #after defeating mirror b
             Locations.Trainers.aidel_rebattle: self.has_defeated_dakim, #after defeating dakim and getting pda contact from eugen
-            Locations.Trainers.emok_rebattle: self.has_defeated_dakim, #after defating dakim
-            Locations.Trainers.calda_rebattle: self.has_defeated_dakim, #after defeating dakim
+            Locations.Trainers.hader: self.dukings_mail_read, #after reading duking's mail in agate village
             Locations.Trainers.justy: self.do_justy,
             Locations.Misc.tm27: self.do_justy,
             Locations.Trainers.hader: self.access_under,
@@ -137,6 +136,7 @@ class ColosseumRules:
             Regions.phenac_colosseum_r3: self.phenac_round_three_unlocked,
             Regions.phenac_colosseum_r4: self.phenac_round_four_unlocked,
             Regions.pyrite: self.access_pyrite,
+            Regions.pyrite_1: self.access_first_pyrite,
             Regions.pyrite_2: self.access_second_pyrite,
             Regions.pyrite_jail_cell: self.has_jail_key,
             Regions.agate: self.access_agate,
@@ -347,8 +347,11 @@ class ColosseumRules:
     def access_pyrite(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.region_unlock, self.player)
 
+    def access_first_pyrite(self, state: CollectionState) -> bool:
+        return self.access_pyrite(state) and self.has_defeated_dakim(state)
+
     def access_second_pyrite(self, state: CollectionState) -> bool:
-        return state.has(Items.Progression.time_flute, self.player) and self.access_lab(state)
+        return self.access_pyrite(state) and state.has(Items.Progression.time_flute, self.player) and self.access_lab(state)
 
     def access_under(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.elevator_key, self.player)
@@ -395,6 +398,9 @@ class ColosseumRules:
     def has_defeated_dakim(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.dakim_defeated, self.player)
     
+    def dukings_mail_read(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.dukings_mail_read, self.player)
+
     def has_defeated_mirorb(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.mirorb_defeated, self.player)
 

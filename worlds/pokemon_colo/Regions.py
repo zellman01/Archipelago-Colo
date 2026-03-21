@@ -28,6 +28,7 @@ colo_regions_all: Dict[str, List[str]] = {
     Regions.pyrite_colosseum_r3: [Regions.pyrite_colosseum_r4],
     Regions.pyrite_colosseum_r4: [],
     Regions.pyrite_2: [],
+    Regions.pyrite_1: [],
     Regions.pyrite_jail_cell: [],
     Regions.construction: [],
     Regions.agate: [Regions.purify],

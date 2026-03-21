@@ -183,6 +183,11 @@ class ColosseumWorld(World):
         mirorb_event = ColosseumItem(Items.Progression.mirorb_defeated, ItemClassification.progression, None, self.player)
         defeat_mirorb_loc.place_locked_item(mirorb_event)
         self.items_created += 1
+        
+        dukings_mail_read = self.multiworld.get_location(Locations.Misc.dukings_mail_read, self.player)
+        dukings_mail_event = ColosseumItem(Items.Progression.dukings_mail_read, ItemClassification.progression, None, self.player)
+        dukings_mail_read.place_locked_item(dukings_mail_event)
+        self.items_created += 1
 
     def create_items(self) -> None:
         list = self.used_items.copy()

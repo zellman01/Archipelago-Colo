@@ -471,9 +471,9 @@ class Items:
         card_key = "Card Key"
         down_st_key = "Down St. Key"
         data_rom = "Data Rom"
-		dna_sample = "DNA Sample
-		dakim_defeated = "Mt. Battle cleared"
-		mirorb_defeated = "Pyrite Cave Hideout cleared"
+        dna_sample = "DNA Sample"
+        dakim_defeated = "Mt. Battle cleared"
+        mirorb_defeated = "Pyrite Cave Hideout cleared"
         dukings_mail_read = "Duking's Mail Read"
     class Useful:
         l_disk = "L-Disk"

@@ -36,7 +36,7 @@ colo_regions_all: Dict[str, List[str]] = {
     Regions.lab: [Regions.lab_main, Regions.lab_station, Regions.lab_shutter],
     Regions.lab_main: [Regions.lab_main_after_key],
     Regions.lab_main_after_key: [Regions.lab_main_after_puzzle],
-    Regions.lab_main_after_key: [],
+    Regions.lab_main_after_puzzle: [],
     Regions.lab_station: [],
     Regions.lab_shutter: [],
     Regions.realgam: [Regions.pre_final],

@@ -61,9 +61,9 @@ starter_pokemon_captured: Dict[str, PCLocData] = {
 }
 
 starter_pokemon_purified: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleef_purify: None,
-    Locations.ShadowPokemon.quilava_purify: None,
-    Locations.ShadowPokemon.croconaw_purify: None
+    Locations.ShadowPokemon.bayleef_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.quilava_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.croconaw_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
 }
 
 starter_trainer_locations_1: Dict[str, PCLocData] = {
@@ -280,47 +280,47 @@ agate_locations_2: Dict[str, PCLocData] = {
 agate_locations = agate_locations | agate_locations_2
 
 relic_stone_locations: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.makuhita_purify: None,
-    Locations.ShadowPokemon.slugma_purify: None,
-    Locations.ShadowPokemon.noctowl_purify: None,
-    Locations.ShadowPokemon.flaffy_purify: None,
-    Locations.ShadowPokemon.skiploom_purify: None,
-    Locations.ShadowPokemon.quagsire_purify: None,
-    Locations.ShadowPokemon.misdreavus_purify: None,
-    Locations.ShadowPokemon.furret_purify: None,
-    Locations.ShadowPokemon.yanma_purify: None,
-    Locations.ShadowPokemon.remoraid_purify: None,
-    Locations.ShadowPokemon.mantine_purify: None,
-    Locations.ShadowPokemon.qwilfish_purify: None,
-    Locations.ShadowPokemon.meditite_purify: None,
-    Locations.ShadowPokemon.dunsparce_purify: None,
-    Locations.ShadowPokemon.swablu_purify: None,
-    Locations.ShadowPokemon.sudowoodo_purify: None,
-    Locations.ShadowPokemon.hitmontop_purify: None,
-    Locations.ShadowPokemon.entei_purify: None,
-    Locations.ShadowPokemon.ledian_purify: None,
-    Locations.ShadowPokemon.suicune_purify: None,
-    Locations.ShadowPokemon.gligar_purify: None,
-    Locations.ShadowPokemon.stantler_purify: None,
-    Locations.ShadowPokemon.piloswine_purify: None,
-    Locations.ShadowPokemon.sneasel_purify: None,
-    Locations.ShadowPokemon.aipom_purify: None,
-    Locations.ShadowPokemon.murkrow_purify: None,
-    Locations.ShadowPokemon.forretress_purify: None,
-    Locations.ShadowPokemon.ariados_purify: None,
-    Locations.ShadowPokemon.granbull_purify: None,
-    Locations.ShadowPokemon.vibrava_purify: None,
-    Locations.ShadowPokemon.raikou_purify: None,
-    Locations.ShadowPokemon.sunflora_purify: None,
-    Locations.ShadowPokemon.delibird_purify: None,
-    Locations.ShadowPokemon.heracross_purify: None,
-    Locations.ShadowPokemon.skarmory_purify: None,
-    Locations.ShadowPokemon.miltank_purify: None,
-    Locations.ShadowPokemon.absol_purify: None,
-    Locations.ShadowPokemon.houndoom_purify: None,
-    Locations.ShadowPokemon.tropius_purify: None,
-    Locations.ShadowPokemon.metagross_purify: None,
-    Locations.ShadowPokemon.tyranitar_purify: None
+    Locations.ShadowPokemon.makuhita_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.slugma_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.noctowl_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=0), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.flaffy_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=1), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.skiploom_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.quagsire_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.misdreavus_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.furret_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.yanma_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE8, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.remoraid_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEF, bit_pos=0), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.mantine_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=1), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.qwilfish_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.meditite_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.dunsparce_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.swablu_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.sudowoodo_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.hitmontop_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.entei_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=0), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.ledian_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=1), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.suicune_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.gligar_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.stantler_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.piloswine_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.sneasel_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.aipom_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEE, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.murkrow_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=0), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.forretress_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=1), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.ariados_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.granbull_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.vibrava_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.raikou_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.sunflora_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.delibird_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEED, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.heracross_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=0), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.skarmory_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=1), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.miltank_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.absol_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.houndoom_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.tropius_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.metagross_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.tyranitar_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEEC, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
 }
 
 mt_battle_locations: Dict[str, PCLocData] = {
@@ -490,10 +490,10 @@ tower_colosseum_locations: Dict[str, PCLocData] = {
 realgam_tower_locations = tower_pregate_locations | tower_postgate_locations | tower_colosseum_locations
 
 postgame_purify: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.smeargle_purify: None,
-    Locations.ShadowPokemon.ursaring_purify: None,
-    Locations.ShadowPokemon.shuckle_purify: None,
-    Locations.ShadowPokemon.togetic_purify: None
+    Locations.ShadowPokemon.smeargle_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEF2, bit_pos=2), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.ursaring_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEF2, bit_pos=3), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.shuckle_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEF2, bit_pos=4), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.togetic_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEF1, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
 }
 
 # Create helper variables to not have all_locations be so long

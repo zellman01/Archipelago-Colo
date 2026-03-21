@@ -27,14 +27,43 @@ class ColosseumLocation(Location):
 
 
 aidel_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED2, bit_pos=3)
+emok_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=6)
+calda_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC9, bit_pos=3)
+kai_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F2, bit_pos=6)
+pike_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F2, bit_pos=7)
+geats_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=0)
+geare_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=1)
+loba_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=3)
+akmen_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=2)
+raleen_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=4)
+tura_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=5)
+toti_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=6)
+elidi_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=7)
+willie_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC5, bit_pos=7)
+doken_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=2)
+
 aidel1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0ED, bit_pos=5)
+emok1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=5)
+calda1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=2)
+kai1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=2)
+pike1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=3)
+geats1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=4)
+geare1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=5)
+akmen1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=6)
+loba1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=7)
+raleen1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=0)
+tura1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=1)
+toti1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=2)
+elidi1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=3)
+willie1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3)
+doken1_ram = PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF6, bit_pos=5)
 
 start_locations: Dict[str, PCLocData] = {
     Locations.Misc.espeon_umbreon: PCLocData(ram_info=PCRamData(MAP_ID_ADDR), type=PCLocType.START, map_id=[OUTSKIRT_STAND_ID])
 }
 
 outside_city_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.willie: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC5, bit_pos=7), type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
+    Locations.Trainers.willie: PCLocData(ram_info=[willie_ram, willie1_ram], type=PCLocType.TRAINER, map_id=[OUTSKIRT_STAND_ID]),
     Locations.Misc.bartender_gives_5_pokeballs: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECB, bit_pos=1), type=PCLocType.ITEM, map_id=[OUTSKIRT_STAND_ID])
 }
 
@@ -126,8 +155,8 @@ phenac_colosseum_locations = phenac_colosseum_r1_locations | phenac_colosseum_r2
 
 pyrite_locations: Dict[str, PCLocData] = {
     Locations.Trainers.hader: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=0), type=PCLocType.ITEM, map_id=[PYRITE_ID]),
-    Locations.Trainers.emok: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E8, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
-    Locations.Trainers.calda: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEC9, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
+    Locations.Trainers.emok: PCLocData(ram_info=[emok_ram, emok1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
+    Locations.Trainers.calda: PCLocData(ram_info=[calda_ram, calda1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     #TODO Lon, Vant, nover, diogo, leba, divel are all reset after you leave the screen. Connection loss or async run are a problem
     Locations.Trainers.lon: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDC3, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
     Locations.Trainers.vant: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDC3, bit_pos=4), type=PCLocType.TRAINER, map_id=[PYRITE_ID]),
@@ -151,28 +180,27 @@ rematches_dakim_locations: Dict[str, PCLocData] = {
 }
 
 rematches_dakim_pyrite_locations: Dict[str, PCLocData] = {    
-    Locations.Trainers.emok_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=5), type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
-    Locations.Trainers.calda_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C178, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
+    Locations.Trainers.emok_rematch: PCLocData(ram_info=emok1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.emok),
+    Locations.Trainers.calda_rematch: PCLocData(ram_info=calda1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID], links_to=Locations.Trainers.calda),
 }
 
 rematches_dakim_pyrite_building_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.kai_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.kai),
-    Locations.Trainers.pike_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=3), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.pike),
-    Locations.Trainers.geats_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=4), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geats),
-    Locations.Trainers.geare_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=5), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geare),
-    Locations.Trainers.akmen_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=6), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.akmen),
-    Locations.Trainers.loba_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF1, bit_pos=7), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.loba),
-    Locations.Trainers.raleen_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=0), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.raleen),
-    Locations.Trainers.tura_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=1), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.tura),
-    Locations.Trainers.toti_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=2), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.toti),
-    Locations.Trainers.elidi_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF0, bit_pos=3), type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.elidi),
+    Locations.Trainers.kai_rematch: PCLocData(ram_info=kai1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.kai),
+    Locations.Trainers.pike_rematch: PCLocData(ram_info=pike1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID], links_to=Locations.Trainers.pike),
+    Locations.Trainers.geats_rematch: PCLocData(ram_info=geats1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geats),
+    Locations.Trainers.geare_rematch: PCLocData(ram_info=geare1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.geare),
+    Locations.Trainers.akmen_rematch: PCLocData(ram_info=akmen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.akmen),
+    Locations.Trainers.loba_rematch: PCLocData(ram_info=loba1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_2F_ID], links_to=Locations.Trainers.loba),
+    Locations.Trainers.raleen_rematch: PCLocData(ram_info=raleen1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.raleen),
+    Locations.Trainers.tura_rematch: PCLocData(ram_info=tura1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.tura),
+    Locations.Trainers.toti_rematch: PCLocData(ram_info=toti1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.toti),
+    Locations.Trainers.elidi_rematch: PCLocData(ram_info=elidi1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_3F_ID], links_to=Locations.Trainers.elidi),
 }
 
 rematches_mirorb_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.willie_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECD, bit_pos=3), type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
-    Locations.Trainers.doken_rematch: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF6, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID], links_to=Locations.Trainers.doken),
+    Locations.Trainers.willie_rematch: PCLocData(ram_info=willie1_ram, type=PCLocType.REMATCH, map_id=[OUTSKIRT_STAND_ID], links_to=Locations.Trainers.willie),
+    Locations.Trainers.doken_rematch: PCLocData(ram_info=doken1_ram, type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID], links_to=Locations.Trainers.doken),
 }
-
 
 pyrite_2_locations: Dict[str, PCLocData] = {
     Locations.Misc.elevator_key: None,
@@ -198,25 +226,25 @@ pyrite_colosseum_locations: Dict[str, PCLocData] = {
 pyrite_building_1f_locations: Dict[str, PCLocData] = {
     Locations.Misc.ein_file_h: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5D, bit_pos=6), type=PCLocType.ITEM, map_id=[PYRITE_BUILDING_1F_ID]),
     Locations.Trainers.nore: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDDC, bit_pos=4), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID]),
-    Locations.Trainers.kai: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F2, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID]),
-    Locations.Trainers.pike: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F2, bit_pos=7), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID]),
+    Locations.Trainers.kai: PCLocData(ram_info=[kai_ram, kai1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID]),
+    Locations.Trainers.pike: PCLocData(ram_info=[pike_ram, pike1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_1F_ID]),
     Locations.ShadowPokemon.yanma_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C074, bit_pos=5), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_1F_ID]),
     Locations.Chests.pyrite_building_chest_3:  PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5E, bit_pos=0), type=PCLocType.CHEST, map_id=[PYRITE_BUILDING_1F_ID])
 }
 
 pyrite_building_2f_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.geats: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=0), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
-    Locations.Trainers.geare: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=1), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
-    Locations.Trainers.loba: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=3), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
-    Locations.Trainers.akmen: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.geats: PCLocData(ram_info=[geats_ram, geats1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.geare: PCLocData(ram_info=[geare_ram, geare1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.loba: PCLocData(ram_info=[loba_ram, loba1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
+    Locations.Trainers.akmen: PCLocData(ram_info=[akmen_ram, akmen1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_2F_ID]),
     Locations.Chests.pyrite_building_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5E, bit_pos=1), type=PCLocType.CHEST, map_id=[PYRITE_BUILDING_2F_ID])
 }
 
 pyrite_building_3f_locations: Dict[str, PCLocData] = {
-    Locations.Trainers.raleen: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=4), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
-    Locations.Trainers.tura: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
-    Locations.Trainers.toti: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
-    Locations.Trainers.elidi: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0F1, bit_pos=7), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.raleen: PCLocData(ram_info=[raleen_ram, raleen1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.tura: PCLocData(ram_info=[tura_ram, tura1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.toti: PCLocData(ram_info=[toti_ram, toti1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
+    Locations.Trainers.elidi: PCLocData(ram_info=[elidi_ram, elidi1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_3F_ID]),
     Locations.Chests.pyrite_building_chest_2: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5E, bit_pos=2), type=PCLocType.CHEST, map_id=[PYRITE_BUILDING_3F_ID])
 }
 
@@ -224,7 +252,7 @@ pyrite_building_roof_locations: Dict[str, PCLocData] = {
     Locations.Misc.ein_file_s: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5E, bit_pos=3), type=PCLocType.ITEM, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.Trainers.reath: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECF, bit_pos=5), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.Trainers.ferma: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECF, bit_pos=6), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
-    Locations.Trainers.doken: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BECE, bit_pos=2), type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID]),
+    Locations.Trainers.doken: PCLocData(ram_info=[doken_ram, doken1_ram], type=PCLocType.TRAINER, map_id=[PYRITE_BUILDING_ROOF_ID]),
     Locations.ShadowPokemon.remoraid_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=0), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.ShadowPokemon.mantine_capture:  PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=1), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_INSIDE_ID]),
     Locations.ShadowPokemon.qwilfish_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07B, bit_pos=2), type=PCLocType.SHADOW, map_id=[PYRITE_BUILDING_ROOF_ID])

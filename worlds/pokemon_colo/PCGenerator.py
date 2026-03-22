@@ -6,7 +6,12 @@ import Utils
 
 from CommonClient import logger
 
-from gclib.gcm import GCM, BytesIO
+from gclib.gcm import GCM
+
+from .iso_helper.fsys_helper.FsysFileDetail import FileType
+from .iso_helper.IsoPokemonDefinitions.Pokemarts import Pokemart
+from .iso_helper.fsys_helper.FsysFileEntry import REL
+from .iso_helper.fsys_helper.FsysFile import FsysFile
 from .Helpers import StringByteFunction as sbf
 from .client.constants import CLIENT_VERSION, AP_WORLD_VERSION_NAME
 
@@ -56,6 +61,21 @@ class ColosseumRandomizer:
         self.gcm.changed_files["sys/boot.bin"] = bin_data
         self.gcm.changed_files["sys/main.dol"] = dol_data
 
+        # Change the Outskirt Stand to have a pokeballs instead of a antidote in the shop form the beginning
+        # Proof of Concept implementatoin, can be used for Shopsanity or balancing
+        pocket_menu = self.gcm.read_file_data("files/pocket_menu.fsys")
+        pocket_menu_fsys = FsysFile("pocket_menu.fsys", pocket_menu)
+        pocket_menu_rel = pocket_menu_fsys.get_entry_by_filename("pocket_menu.rel", FileType.REL)
+
+        if (isinstance(pocket_menu_rel, REL)):
+            outskirts_mart_before_pokeballs = Pokemart(0, pocket_menu_rel)
+            outskirts_mart_before_pokeballs.write_item_at_index(0x0003, 0) 
+            outskirts_mart_before_pokeballs.write_item_at_index(0x0004, 1) 
+
+        pocket_menu_fsys.encode_and_write_to_stream()
+        self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu
+
+        
 
         # Handle rest of game randomization/AP related modifications to files
 

@@ -17,6 +17,8 @@ class FileType(Enum):
     REL = 0x1c  # relocation table
     PKX = 0x1e  # character battle model (same as dat with additional header information)
     WZX = 0x20  # move animation
+    UNKNOWN = 0x22 # TODO what is this filetype?
+    UNKNOWN2 = 0x26 # TODO what is this filetype?
     ISD = 0x28  # audio file header
     ISH = 0x2a  # audio file
     THH = 0x2c  # thp media header

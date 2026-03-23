@@ -65,7 +65,7 @@ class ColosseumRandomizer:
         # Proof of Concept implementatoin, can be used for Shopsanity or balancing
         pocket_menu = self.gcm.read_file_data("files/pocket_menu.fsys")
         pocket_menu_fsys = FsysFile("pocket_menu.fsys", pocket_menu)
-        pocket_menu_rel = pocket_menu_fsys.get_entry_by_filename("pocket_menu.rel", FileType.REL)
+        pocket_menu_rel = pocket_menu_fsys.get_entry_by_filename("pocket_menu", FileType.REL)
 
         if (isinstance(pocket_menu_rel, REL)):
             outskirts_mart_before_pokeballs = Pokemart(0, pocket_menu_rel)

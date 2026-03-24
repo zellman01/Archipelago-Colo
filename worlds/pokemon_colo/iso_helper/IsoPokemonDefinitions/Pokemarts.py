@@ -14,7 +14,7 @@ class Pokemart:
         item_start_index = self.__get_first_item_offset()
         end = False
         while not end:
-            item_id = DataReadHelper.int_from_bytes(self.rel_entry.raw_data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_start_index, 2)
+            item_id = DataReadHelper.int_from_bytes(self.rel_entry.data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_start_index, 2)
             item_start_index += 2
             if item_id == 0:
                 end = True
@@ -28,16 +28,16 @@ class Pokemart:
         if index >= self.number_of_items:
             raise Exception("Item index " + str(index) + " is out of bounds for mart with id " + str(self.id) + " which has " + str(self.number_of_items) + " items.")
         item_offset = self.__get_first_item_offset() + (index * 2)
-        return DataReadHelper.write_int_to_bytes(self.rel_entry.raw_data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_offset, item_id, 2)
+        return DataReadHelper.write_int_to_bytes(self.rel_entry.data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_offset, item_id, 2)
 
     def get_item_at_index(self, index):
         if index >= self.number_of_items:
             raise Exception("Item index " + str(index) + " is out of bounds for mart with id " + str(self.id) + " which has " + str(self.number_of_items) + " items.")
         item_offset = self.__get_first_item_offset() + (index * 2)
-        return DataReadHelper.int_from_bytes(self.rel_entry.raw_data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_offset, 2)
+        return DataReadHelper.int_from_bytes(self.rel_entry.data, self.rel_entry.get_pointer(POKEMON_ITEMS_POINTER_INDEX) + item_offset, 2)
 
     def __get_first_item_offset(self):
-        return DataReadHelper.int_from_bytes(self.rel_entry.raw_data, self.rel_entry.get_pointer(POKEMON_ITEM_START_OFFSET_POINTER_INDEX) + (self.id * 4) + 2, 2) * 2
+        return DataReadHelper.int_from_bytes(self.rel_entry.data, self.rel_entry.get_pointer(POKEMON_ITEM_START_OFFSET_POINTER_INDEX) + (self.id * 4) + 2, 2) * 2
         
 
     

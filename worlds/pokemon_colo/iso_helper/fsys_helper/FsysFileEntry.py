@@ -15,15 +15,15 @@ class DataReadHelper:
     
 
 class FsysFileEntry:
-    def __init__(self, filetype: FileType, data: bytearray, file_detail: FsysFileDetail):
+    def __init__(self, filetype: FileType, raw_data: bytearray, file_detail: FsysFileDetail):
         self.filetype = filetype
-        self.raw_data = data
+        self.raw_data = raw_data
         self.data = bytearray([])
         self.file_detail = file_detail
 
-    def replace_raw_data(self, new_data: bytearray):
-        self.raw_data = new_data
-        self.data = bytearray([])
+    def replace_data(self, new_data: bytearray):
+        self.data = new_data
+        self.encode()
 
     def decode(self) -> None:
         if self.file_detail.file_is_compressed():
@@ -42,46 +42,49 @@ class FsysFileEntry:
     def extract_from_fsys(fsys_stream: BytesIO, file_detail: FsysFileDetail) -> "FsysFileEntry":
         fsys_stream.seek(file_detail.start_offset)
         size = file_detail.compressed_size if file_detail.file_is_compressed() else file_detail.uncompressed_size
-        raw_data = fsys_stream.read(size)
+        raw_data = bytearray(fsys_stream.read(size))
+
+        if len(raw_data) != size:
+            raise Exception(f"Expected to read {size} bytes for file '{file_detail.filename}' but only read {len(raw_data)} bytes.")
 
         return FsysFileEntry.create_extracted_file(file_detail.filetype, bytearray(raw_data), file_detail)
 
     @staticmethod
-    def create_extracted_file(filetype: FileType, data: bytearray, file_detail: FsysFileDetail) -> "FsysFileEntry":
+    def create_extracted_file(filetype: FileType, raw_data: bytearray, file_detail: FsysFileDetail) -> "FsysFileEntry":
         if filetype in (FileType.GTX, FileType.ATX):
-            return Texture(filetype, data, file_detail)
+            return Texture(filetype, raw_data, file_detail)
         elif filetype == FileType.GSW:
-            return GSWTexture(data, file_detail)
+            return GSWTexture(raw_data, file_detail)
         elif filetype == FileType.PKX:
-            return PKX(data, file_detail)
+            return PKX(raw_data, file_detail)
         elif filetype == FileType.MSG:
-            return StringTable(data, file_detail)
+            return StringTable(raw_data, file_detail)
         elif filetype == FileType.REL:
-            return REL(data, file_detail)
+            return REL(raw_data, file_detail)
         elif filetype == FileType.SCD:
-            return SCD(data, file_detail)
+            return SCD(raw_data, file_detail)
         else:
-            return FsysFileEntry(filetype, data, file_detail)
+            return FsysFileEntry(filetype, raw_data, file_detail)
 
 
 class Texture(FsysFileEntry):
-    def __init__(self, filetype: FileType, data: bytearray, file_detail: FsysFileDetail):
-        super().__init__(filetype, data, file_detail)
+    def __init__(self, filetype: FileType, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(filetype, raw_data, file_detail)
 
 
 class GSWTexture(FsysFileEntry):
-    def __init__(self, data: bytearray, file_detail: FsysFileDetail):
-        super().__init__(FileType.GSW, data, file_detail)
+    def __init__(self, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(FileType.GSW, raw_data, file_detail)
 
 
 class PKX(FsysFileEntry):
-    def __init__(self, data: bytearray, file_detail: FsysFileDetail):
-        super().__init__(FileType.PKX, data, file_detail)
+    def __init__(self, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(FileType.PKX, raw_data, file_detail)
 
 
 class StringTable(FsysFileEntry):
-    def __init__(self, data: bytearray, file_detail: FsysFileDetail):
-        super().__init__(FileType.MSG, data, file_detail)
+    def __init__(self, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(FileType.MSG, raw_data, file_detail)
 
 
 class REL(FsysFileEntry):
@@ -101,31 +104,35 @@ class REL(FsysFileEntry):
         offset = self.get_pointer_offset(index)
         return DataReadHelper.int_from_bytes(self.data, offset) + self.data_start_offset
     
-    def __init__(self, data: bytearray, file_detail: FsysFileDetail):
-        if file_detail.filename.find("common_rel") != -1:
-            self.data_start_offset = DataReadHelper.int_from_bytes(data, self.common_rel_data_start_offset_location)
-        else:
-            self.data_start_offset = DataReadHelper.int_from_bytes(data, self.rel_data_start_offset_location)
+    def decode(self) -> None:
+        super().decode()
 
-        self.pointer_start_offset = DataReadHelper.int_from_bytes(data, self.rel_pointers_start_offset_location)
+        if self.file_detail.filename.find("common_rel") != -1:
+            self.data_start_offset = DataReadHelper.int_from_bytes(self.data, self.common_rel_data_start_offset_location)
+        else:
+            self.data_start_offset = DataReadHelper.int_from_bytes(self.data, self.rel_data_start_offset_location)
+
+        self.pointer_start_offset = DataReadHelper.int_from_bytes(self.data, self.rel_pointers_start_offset_location)
         self.first_pointer_offset = self.pointer_start_offset + self.rel_pointers_first_pointer_offset
 
-        pointer_header_offset = DataReadHelper.int_from_bytes(data, self.rel_pointers_header_pointer1_offset, signed=True)
-        pointer_end_offset = DataReadHelper.int_from_bytes(data, pointer_header_offset + 0xC, signed=True)
+        pointer_header_offset = DataReadHelper.int_from_bytes(self.data, self.rel_pointers_header_pointer1_offset, signed=True)
+        pointer_end_offset = DataReadHelper.int_from_bytes(self.data, pointer_header_offset + 0xC, signed=True)
         self.number_of_pointers = 0
         current_offset = self.first_pointer_offset
         end = False
 
         while current_offset < pointer_end_offset and not end:
-            val = DataReadHelper.int_from_bytes(data, current_offset, True)
+            val = DataReadHelper.int_from_bytes(self.data, current_offset, True)
             end = val >= 0xCA01 and val <= 0xCAFF
             if not end:
                 self.number_of_pointers += 1
             current_offset += self.rel_size_of_pointer
 
-        super().__init__(FileType.REL, data, file_detail)
+
+    def __init__(self, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(FileType.REL, raw_data, file_detail)
 
 
 class SCD(FsysFileEntry):
-    def __init__(self, data: bytearray, file_detail: FsysFileDetail):
-        super().__init__(FileType.SCD, data, file_detail)
+    def __init__(self, raw_data: bytearray, file_detail: FsysFileDetail):
+        super().__init__(FileType.SCD, raw_data, file_detail)

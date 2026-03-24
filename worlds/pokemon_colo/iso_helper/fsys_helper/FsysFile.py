@@ -20,7 +20,7 @@ class FsysFile:
     def __init__(self, filename, stream: BytesIO):
         self.filename = filename
         self.stream = stream
-        self.file_entries = []
+        self.file_entries: list[FsysFileEntry] = []
 
         for i in range(self.__number_of_entries()):
             start = self.__get_int_at_offset(self.first_file_details_pointer_offset + i * 4)
@@ -48,22 +48,17 @@ class FsysFile:
         self.stream.truncate(self.stream.tell())
 
         size_of_detail_pointers = len(self.file_entries) * 4
-        alignment_check = size_of_detail_pointers % 16
-        alignment = 0
-        if alignment_check != 0:
-            alignment = 16 - alignment_check
+        start_name_offset = self.first_file_details_pointer_offset + size_of_detail_pointers
 
-        start_name_offset = self.first_file_details_pointer_offset + size_of_detail_pointers + alignment
         self.stream.seek(start_name_offset)
+        self.__align_stream(self.stream, 0x10)
+        
+        start_name_offset = self.stream.tell()
 
         # Write file names
-        start_date_offset = -1
         for entry in self.file_entries:
             self.stream.write(entry.file_detail.filename.encode('utf-8'))
             self.stream.write(b'\x00')
-
-            if entry.file_detail.start_offset < start_date_offset:
-                start_date_offset = entry.file_detail.start_offset
 
         self.__align_stream(self.stream, 0x10)
   
@@ -94,7 +89,8 @@ class FsysFile:
             self.stream.seek(detail_header.start_offset)
             self.stream.write(encoded_data)
 
-            detail_header.uncompressed_size = length
+            if length > 0 and length != detail_header.uncompressed_size:
+                detail_header.uncompressed_size = length
 
             if encoded_length != detail_header.compressed_size:
                  adjusted_size = encoded_length - detail_header.compressed_size
@@ -122,6 +118,9 @@ class FsysFile:
         self.stream.seek(self.fsys_file_size_offset)
         self.stream.write(length.to_bytes(4, byteorder='big'))
 
+        self.stream.seek(self.number_of_file_entries_offset)
+        self.stream.write(len(self.file_entries).to_bytes(4, byteorder='big'))
+
         self.stream.seek(detail_headers_start_offset)
         for entry in self.file_entries:
             detail_header = entry.file_detail
@@ -138,6 +137,7 @@ class FsysFile:
             self.stream.write(detail_header.name_offset.to_bytes(4, byteorder='big'))
             self.stream.write(bytearray([0x00] * 12)) # padding
             self.stream.write(bytearray([0x11] * 12)) # padding
+            self.stream.write(bytearray([0x00] * 16)) # padding
 
         self.stream.seek(0)
         return self.stream
@@ -173,14 +173,9 @@ class FsysFile:
         return string_bytes.decode('utf-8')
     
     def __align_stream(self, stream: BytesIO, alignment):
-        current_pos = stream.tell()
-
-        stream.seek(0, 2)
         length = stream.tell()
 
         alignment_check = length % alignment
         if alignment_check != 0:
             padding_needed = alignment - alignment_check
             stream.write(b'\x00' * padding_needed)
-
-        stream.seek(current_pos)

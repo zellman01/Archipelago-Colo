@@ -61,8 +61,8 @@ class ColosseumRandomizer:
         self.gcm.changed_files["sys/boot.bin"] = bin_data
         self.gcm.changed_files["sys/main.dol"] = dol_data
 
-        # Change the Outskirt Stand to have a pokeballs instead of a antidote in the shop form the beginning
-        # Proof of Concept implementatoin, can be used for Shopsanity or balancing
+        # Change the Outskirt Stand to have a pokeballs instead of a antidote in the shop from the beginning
+        # Proof of Concept implementation, can be used for Shopsanity or balancing
         pocket_menu = self.gcm.read_file_data("files/pocket_menu.fsys")
         pocket_menu_fsys = FsysFile("pocket_menu.fsys", pocket_menu)
         pocket_menu_rel = pocket_menu_fsys.get_entry_by_filename("pocket_menu", FileType.REL)
@@ -75,17 +75,6 @@ class ColosseumRandomizer:
             pocket_menu_rel.encode()
 
         self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu_fsys.save()
-
-        # Add the Archipelago logo to the title screen
-        title = self.gcm.read_file_data("files/title.fsys")
-        title_fsys = FsysFile("title.fsys", title)
-
-        logo_demo_rdat = title_fsys.get_entry_by_filename("logo_demo", FileType.RDAT)
-        new_data = pkgutil.get_data(__name__, "data/logo_demo.rdat")
-        if new_data is not None:
-            logo_demo_rdat.replace_raw_data(bytearray(new_data))
-
-        self.gcm.changed_files["files/title.fsys"] = title_fsys.save()
 
         # Handle rest of game randomization/AP related modifications to files
 

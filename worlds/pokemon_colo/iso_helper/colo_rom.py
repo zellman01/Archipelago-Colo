@@ -18,6 +18,8 @@ MAIN_PKG = "worlds.poke_colo.ColossumGenerator"
 RANOMIZER_NAME = "Pokemon Colosseum"
 COLO_USA_MD5 = 0xe3f389dc5662b9f941769e370195ec90
 
+LIB_VERSION = "V0.5.8"
+
 class InvalidCleanIsoError(Exception):
     """
     Exception raised when there is an issue with the Pokemon Colosseum ISO
@@ -73,7 +75,7 @@ class PCUSAPPatch(APPatch, metaclass=AutoPatchRegister):
         return lib_path
 
     def __tmp_folder_name(self) -> str:
-        temp_path = os.path.join(tempfile.gettempdir(), "pokemon_colosseum", "libs")
+        temp_path = os.path.join(tempfile.gettempdir(), "pokemon_colosseum", f"libs_{LIB_VERSION}")
         return temp_path
 
     def patch(self, apcolo_patch: str) -> str:
@@ -155,9 +157,8 @@ class PCUSAPPatch(APPatch, metaclass=AutoPatchRegister):
 
         from ..PCClient import CLIENT_VERSION
         lib_path = self.__get_archive_name()
-        version_old = "V0.5.8"
         # Use Luigi's Mansion's artifacts for now until our own are uploaded
-        lib_path_base = f"https://github.com/BootsinSoots/Archipelago/releases/download/{version_old}"
+        lib_path_base = f"https://github.com/BootsinSoots/Archipelago/releases/download/{LIB_VERSION}"
         download_path = f"{lib_path_base}/{lib_path}.zip"
 
         tmp_zip_path = os.path.join(tmp_dir_path, "temp.zip")
@@ -184,12 +185,20 @@ class PCUSAPPatch(APPatch, metaclass=AutoPatchRegister):
     def __get_remote_dependencies_and_create_iso(self, appc_patch: str, output_file: str, pc_clean_iso: str):
         try:
             local_dir_path = self.__tmp_folder_name()
-            if os.path.isdir(local_dir_path):
-                logger.info("Found temp directory after unsuccessful attempt of generating seed, deleting %s.", local_dir_path)
-                shutil.rmtree(local_dir_path)
-            os.makedirs(local_dir_path, exist_ok=True)
-            logger.info("Temp directory created as: %s", local_dir_path)
-            self.download_lib_zip(local_dir_path)
+            if not os.path.isdir(local_dir_path):
+                # Remove any old versioned lib folders before downloading the new version
+                parent_dir = os.path.dirname(local_dir_path)
+                if os.path.isdir(parent_dir):
+                    for entry in os.listdir(parent_dir):
+                        if entry.startswith("libs_"):
+                            old_path = os.path.join(parent_dir, entry)
+                            logger.info("Removing outdated dependency cache: %s", old_path)
+                            shutil.rmtree(old_path, ignore_errors=True)
+                os.makedirs(local_dir_path, exist_ok=True)
+                logger.info("Temp directory created as: %s", local_dir_path)
+                self.download_lib_zip(local_dir_path)
+            else:
+                logger.info("Using cached dependencies from %s.", local_dir_path)
             self.create_iso(local_dir_path, appc_patch, output_file, pc_clean_iso)
         except PermissionError:
             logger.warning("Failed to cleanup tmp folder, %s ignoring delete.", local_dir_path)

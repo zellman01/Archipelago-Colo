@@ -1,4 +1,4 @@
-import json, os
+import json, os, pkgutil
 from random import Random
 import struct
 
@@ -68,14 +68,24 @@ class ColosseumRandomizer:
         pocket_menu_rel = pocket_menu_fsys.get_entry_by_filename("pocket_menu", FileType.REL)
 
         if (isinstance(pocket_menu_rel, REL)):
+            pocket_menu_rel.decode()
             outskirts_mart_before_pokeballs = Pokemart(0, pocket_menu_rel)
             outskirts_mart_before_pokeballs.write_item_at_index(0x0003, 0) 
-            outskirts_mart_before_pokeballs.write_item_at_index(0x0004, 1) 
+            outskirts_mart_before_pokeballs.write_item_at_index(0x0004, 1)
+            pocket_menu_rel.encode()
 
-        pocket_menu_fsys.encode_and_write_to_stream()
-        self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu
+        self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu_fsys.save()
 
-        
+        # Add the Archipelago logo to the title screen
+        title = self.gcm.read_file_data("files/title.fsys")
+        title_fsys = FsysFile("title.fsys", title)
+
+        logo_demo_rdat = title_fsys.get_entry_by_filename("logo_demo", FileType.RDAT)
+        new_data = pkgutil.get_data(__name__, "data/logo_demo.rdat")
+        if new_data is not None:
+            logo_demo_rdat.replace_raw_data(bytearray(new_data))
+
+        self.gcm.changed_files["files/title.fsys"] = title_fsys.save()
 
         # Handle rest of game randomization/AP related modifications to files
 

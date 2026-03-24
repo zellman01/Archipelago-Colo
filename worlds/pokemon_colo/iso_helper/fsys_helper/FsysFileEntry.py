@@ -17,18 +17,26 @@ class DataReadHelper:
 class FsysFileEntry:
     def __init__(self, filetype: FileType, data: bytearray, file_detail: FsysFileDetail):
         self.filetype = filetype
-        self.data = data
+        self.raw_data = data
+        self.data = bytearray([])
         self.file_detail = file_detail
 
-    def encode(self) -> BytesIO:
+    def replace_raw_data(self, new_data: bytearray):
+        self.raw_data = new_data
+        self.data = bytearray([])
+
+    def decode(self) -> None:
+        if self.file_detail.file_is_compressed():
+           self.data = bytearray(LzssEncoder.decode(self.raw_data[SIZE_OF_LZSS_HEADER:]))
+        else:
+            self.data = bytearray(self.raw_data)
+
+    def encode(self) -> None:
         if self.file_detail.file_is_compressed():
             encoder = LzssEncoder()
-            encoded = encoder.encode(self.data)
-            stream = BytesIO(encoded)
+            self.raw_data = bytearray(encoder.encode(self.data))
         else:
-            stream = BytesIO(self.data)
-        
-        return stream
+            self.raw_data = self.data
 
     @staticmethod
     def extract_from_fsys(fsys_stream: BytesIO, file_detail: FsysFileDetail) -> "FsysFileEntry":
@@ -36,12 +44,7 @@ class FsysFileEntry:
         size = file_detail.compressed_size if file_detail.file_is_compressed() else file_detail.uncompressed_size
         raw_data = fsys_stream.read(size)
 
-        if file_detail.file_is_compressed():
-            data = bytearray(LzssEncoder.decode(raw_data[SIZE_OF_LZSS_HEADER:]))
-        else:
-            data = bytearray(raw_data)
-
-        return FsysFileEntry.create_extracted_file(file_detail.filetype, data, file_detail)
+        return FsysFileEntry.create_extracted_file(file_detail.filetype, bytearray(raw_data), file_detail)
 
     @staticmethod
     def create_extracted_file(filetype: FileType, data: bytearray, file_detail: FsysFileDetail) -> "FsysFileEntry":

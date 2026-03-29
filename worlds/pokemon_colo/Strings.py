@@ -354,6 +354,7 @@ class Regions:
     phenac_colosseum_r3 = "Phenac Colosseum Round 3"
     phenac_colosseum_r4 = "Phenac Colosseum Round 4"
     outside_city = "Outside-City Stand"
+    rematch = "Rematches"
     rematches_mirorb = "Outside-City Stand Rematches"
     rematches_dakim = "After Defeating Dakim"
     rematches_dakim_pyrite = "Pyrite Town After Defeating Dakim"

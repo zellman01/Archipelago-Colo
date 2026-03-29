@@ -570,6 +570,7 @@ all_locations = start_locations | starter_pokemon | outside_city_locations | all
 
 regions_to_locations: Dict[str, Dict[str, PCLocData]] = {
     Regions.menu: start_locations,
+    Regions.rematch: [], # Do not put any locations here, this is to seperate rematch regions into their own seperate master region node
     Regions.phenac: [], # Dynamically modified
     Regions.phenac_city_pregym: pregym_locations,
     Regions.phenac_colosseum: [],

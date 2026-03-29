@@ -2,7 +2,7 @@ from typing import Dict, List
 from .Strings import Regions
 
 colo_regions_all: Dict[str, List[str]] = {
-    Regions.menu: [Regions.phenac, Regions.outside_city, Regions.pyrite, Regions.construction, Regions.agate, Regions.mt_battle, Regions.lab, Regions.realgam, Regions.snagem],
+    Regions.menu: [Regions.rematch, Regions.phenac, Regions.outside_city, Regions.pyrite, Regions.construction, Regions.agate, Regions.mt_battle, Regions.lab, Regions.realgam, Regions.snagem],
     Regions.phenac: [Regions.phenac_city_pregym, Regions.phenac_colosseum],
     Regions.phenac_city_pregym: [],
     Regions.phenac_colosseum: [Regions.phenac_colosseum_r2],
@@ -28,6 +28,7 @@ colo_regions_all: Dict[str, List[str]] = {
     Regions.pyrite_colosseum_r3: [Regions.pyrite_colosseum_r4],
     Regions.pyrite_colosseum_r4: [],
     Regions.pyrite_2: [],
+    Regions.rematch: [Regions.rematches_dakim, Regions.rematches_mirorb],
     Regions.rematches_dakim: [Regions.rematches_dakim_pyrite, Regions.rematches_dakim_pyrite_building],
     Regions.rematches_dakim_pyrite: [],
     Regions.rematches_dakim_pyrite_building: [],

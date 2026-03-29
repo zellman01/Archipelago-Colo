@@ -320,7 +320,7 @@ class PCContext(BaseContext):
                     continue
             except:
                 # Should never happen, but just in case
-                raise Exception(f"ERROR: {loc} passed previous check but is not able to provice type or map_id. Please inform the Pokemon Colosseum AP devs.")
+                raise Exception(f"ERROR: {loc} passed previous check but is not able to provide type or map_id. Please inform the Pokemon Colosseum AP devs.")
 
 
             if self.check_all_ram(pc_loc_data, current_map):

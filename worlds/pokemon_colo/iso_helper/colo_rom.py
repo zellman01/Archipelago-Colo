@@ -15,7 +15,7 @@ import urllib.request
 logger = logging.getLogger()
 MAIN_PKG = "worlds.poke_colo.ColossumGenerator"
 
-RANOMIZER_NAME = "Pokemon Colosseum"
+RANDOMIZER_NAME = "Pokemon Colosseum"
 COLO_USA_MD5 = 0xe3f389dc5662b9f941769e370195ec90
 
 LIB_VERSION = "V0.5.8"
@@ -36,7 +36,7 @@ class InvalidCleanIsoError(Exception):
         return f"InvalidCleanIsoError: {self.message}"
 
 class ColoPlayerContainer(APPlayerContainer):
-    game = RANOMIZER_NAME
+    game = RANDOMIZER_NAME
     compression_method = zipfile.ZIP_DEFLATED
     patch_file_ending = ".apcolo"
 
@@ -49,7 +49,7 @@ class ColoPlayerContainer(APPlayerContainer):
         super().write_contents(opened_zipfile)
 
 class PCUSAPPatch(APPatch, metaclass=AutoPatchRegister):
-    game = RANOMIZER_NAME
+    game = RANDOMIZER_NAME
     hash = COLO_USA_MD5
     patch_file_ending = ".apcolo"
     result_file_ending = ".iso"
@@ -138,18 +138,18 @@ class PCUSAPPatch(APPatch, metaclass=AutoPatchRegister):
         # Verify file is the right file to load
         md5_conv = int(base_md5.hexdigest(), 16)
         if md5_conv != COLO_USA_MD5:
-            raise InvalidCleanISOError(f"Invalid vanilla {RANDOMIZER_NAME} ISO.\nYour ISO may be corrupted or your " +
+            raise InvalidCleanIsoError(f"Invalid vanilla {RANDOMIZER_NAME} ISO.\nYour ISO may be corrupted or your " +
                 "MD5 hashes do not match.\nCorrect ISO hash: {COLO_USA_MD5:x}\nYour ISO's hash: {md5_conv}")
 
         # Verify provided ISO is valid ISO with valid Game ID
         if magic == "CISO":
-            raise InvalidCleanIsoError(f"The provided ISO is in CISO format. {RANOMIZER_NAME} randomizer only supports ISOs in ISO format.")
+            raise InvalidCleanIsoError(f"The provided ISO is in CISO format. {RANDOMIZER_NAME} randomizer only supports ISOs in ISO format.")
 
         if game_id != "GC6E01":
             if game_id and game_id.startswith("GC6"):
-                raise InvalidCleanIsoError(f"Invalid version of {RANOMIZER_NAME}. Currently, only the North American version is supported.")
+                raise InvalidCleanIsoError(f"Invalid version of {RANDOMIZER_NAME}. Currently, only the North American version is supported.")
             else:
-                raise InvalidCleanIsoError(f"Invalid game given as the vanilla ISO. You must specify a {RANOMIZER_NAME}'s ISO (North American Version).")
+                raise InvalidCleanIsoError(f"Invalid game given as the vanilla ISO. You must specify a {RANDOMIZER_NAME}'s ISO (North American Version).")
         return
 
     def download_lib_zip(self, tmp_dir_path: str) -> None:

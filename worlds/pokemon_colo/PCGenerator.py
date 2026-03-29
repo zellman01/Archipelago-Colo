@@ -1,4 +1,4 @@
-import json, os, pkgutil
+import json, os
 from random import Random
 import struct
 

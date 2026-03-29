@@ -1,9 +1,9 @@
 """ Pokemon Colosseum Base Context """
 
-import asyncio, random, copy
+import asyncio
 import Utils
 
-from .universal_context import UniversalContext, UniversalCommandProcessor, logger
+from .universal_context import UniversalContext, UniversalCommandProcessor
 from ...client.constants import *
 from ..links.network_engine import ArchipelagoNetworkEngine
 

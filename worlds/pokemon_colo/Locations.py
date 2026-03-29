@@ -1,4 +1,4 @@
-from typing import NamedTuple, List, Optional
+from typing import NamedTuple, List
 from BaseClasses import Location
 from .Strings import Locations, Regions
 from typing import Dict, List, TYPE_CHECKING

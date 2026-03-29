@@ -1,9 +1,8 @@
-from BaseClasses import MultiWorld
-from typing import TypedDict, List, Dict, NamedTuple
+from typing import TypedDict, List, NamedTuple
 from BaseClasses import ItemClassification, Item
 from worlds.pokemon_colo.Helpers import PCItemType
 from .Strings import Items, Events
-from .Options import ColosseumOptions, RuiUnlock, ColosseumSanity
+from .Options import ColosseumOptions, ColosseumSanity
 
 base_id = 159700
 

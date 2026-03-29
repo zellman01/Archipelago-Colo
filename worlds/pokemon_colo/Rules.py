@@ -1,7 +1,6 @@
 from typing import Dict, Callable, TYPE_CHECKING
-from BaseClasses import CollectionState, ItemClassification
+from BaseClasses import CollectionState
 from .Strings import Regions, Items, Locations, Categories, Events
-from .Items import ColosseumItem
 from .Options import ColosseumOptions, ColosseumSanity, RealgamTowerUnlock, Goal
 
 if TYPE_CHECKING:

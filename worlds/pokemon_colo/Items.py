@@ -1122,13 +1122,16 @@ event_items: List[ItemDesc] = [
      'count': 0, # In case it somehow get into used_items it will not be added
      'classification': ItemClassification.progression},     
     {'name': Items.Progression.dakim_defeated,
-     'count': 0, # In case it somehow get into used_items it will not be added
+     'count': 0,
      'classification': ItemClassification.progression},     
     {'name': Items.Progression.mirorb_defeated,
-     'count': 0, # In case it somehow get into used_items it will not be added
+     'count': 0,
      'classification': ItemClassification.progression},     
     {'name': Items.Progression.dukings_mail_read,
-     'count': 0, # In case it somehow get into used_items it will not be added
+     'count': 0,
+     'classification': ItemClassification.progression},   
+    {'name': Items.Progression.dukings_second_mail_received,
+     'count': 0,
      'classification': ItemClassification.progression}
 ]
 

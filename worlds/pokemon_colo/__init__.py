@@ -187,6 +187,11 @@ class ColosseumWorld(World):
         dukings_mail_read = self.multiworld.get_location(Locations.Misc.dukings_mail_read, self.player)
         dukings_mail_event = ColosseumItem(Items.Progression.dukings_mail_read, ItemClassification.progression, self.item_name_to_id[Items.Progression.dukings_mail_read], self.player)
         dukings_mail_read.place_locked_item(dukings_mail_event)
+        self.items_created += 1        
+        
+        dukings_second_mail_received = self.multiworld.get_location(Locations.Misc.dukings_second_mail_received, self.player)
+        dukings_second_mail_event = ColosseumItem(Items.Progression.dukings_second_mail_received, ItemClassification.progression, self.item_name_to_id[Items.Progression.dukings_second_mail_received], self.player)
+        dukings_second_mail_received.place_locked_item(dukings_second_mail_event)
         self.items_created += 1
 
     def create_items(self) -> None:

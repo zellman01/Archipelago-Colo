@@ -135,7 +135,7 @@ class ColosseumRules:
             Regions.pyrite: self.access_pyrite,
             Regions.rematches_dakim: self.has_defeated_dakim,
             Regions.rematches_dakim_pyrite: self.access_pyrite,
-            Regions.rematches_dakim_pyrite_building: self.access_pyrite_colosseum,
+            Regions.rematches_dakim_pyrite_building_and_cave: self.access_pyrite_colosseum,
             Regions.rematches_mirorb: self.has_defeated_mirorb,
             Regions.pyrite_2: self.access_second_pyrite,
             Regions.pyrite_jail_cell: self.has_jail_key,

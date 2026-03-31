@@ -242,7 +242,7 @@ class PCContext(BaseContext):
             map = PREGYM_ID
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x13 and byte4 == 0xD8:
             map = CONSTRUCTION_LOT_ID
-        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0xFE and byte4 == 0xC4:
+        elif byte1 == 0x80 and byte2 == 0x7E and byte3 == 0xFE and byte4 == 0xC4:
             map = PYRITE_ID
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x1C and byte4 == 0x28:
             map = PYRITE_POLICE_DEPARTMENT_ID
@@ -296,8 +296,18 @@ class PCContext(BaseContext):
             map = MT_BATTLE_PLATFORMS_1_ID        
         elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x02 and byte4 == 0x08:
             map = MT_BATTLE_OUTSIDE_ID        
-        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0xFE and byte4 == 0xC4:
-            map = LAB_OUTSIDE_ID
+        elif byte1 == 0x80 and byte2 == 0x7E and byte3 == 0xFE and byte4 == 0xC4:
+            map = LAB_OUTSIDE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7E and byte3 == 0xFF and byte4 == 0x10:
+            map = THE_UNDER_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0C and byte4 == 0x20:
+            map = THE_UNDER_RIGHT_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0C and byte4 == 0xB8:
+            map = THE_UNDER_RIGHT_B1F_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0D and byte4 == 0x04:
+            map = THE_UNDER_RIGHT_B1F_SIDE_ID        
+        elif byte1 == 0x80 and byte2 == 0x7F and byte3 == 0x0D and byte4 == 0x50:
+            map = THE_UNDER_RIGHT_SUBWAY_ID
         return map  
 
     async def pc_check_locations(self):

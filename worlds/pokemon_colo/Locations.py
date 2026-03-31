@@ -210,6 +210,7 @@ rematches_dakim_pyrite_locations: Dict[str, PCLocData] = {
     Locations.Trainers.calda_rematch: PCLocData(ram_info=calda1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_ID]),
 }
 
+# TODO Rematches are reset when leaving the locations. The player has to be connected to the client otherwise progress may be lost
 rematches_dakim_pyrite_building_and_cave_locations: Dict[str, PCLocData] = {
     Locations.Trainers.kai_rematch: PCLocData(ram_info=kai1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID]),
     Locations.Trainers.pike_rematch: PCLocData(ram_info=pike1_ram, type=PCLocType.REMATCH, map_id=[PYRITE_BUILDING_1F_ID]),
@@ -241,7 +242,7 @@ rematches_mirorb_locations: Dict[str, PCLocData] = {
 }
 
 pyrite_2_locations: Dict[str, PCLocData] = {
-    Locations.Misc.elevator_key: None,
+    Locations.Misc.elevator_key: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C117, bit_pos=1), type=PCLocType.ITEM, map_id=[PYRITE_POLICE_DEPARTMENT_ID]),
 }
 
 pyrite_jail_cell_locations: Dict[str, PCLocData] = {
@@ -444,17 +445,18 @@ mt_battle_locations: Dict[str, PCLocData] = {
 }
 
 under_1_locations: Dict[str, PCLocData] = {
-    Locations.Misc.powerup_part: None,
-    Locations.Trainers.zada: None,
-    Locations.Trainers.gurks: None,
-    Locations.Chests.under_chest_1: None
+    Locations.Misc.powerup_part: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C119, bit_pos=6), type=PCLocType.ITEM, map_id=[THE_UNDER_ID]),
+    Locations.Trainers.zada: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BDF2, bit_pos=3), type=PCLocType.TRAINER, map_id=[THE_UNDER_ID]),
+    Locations.Trainers.gurks: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C114, bit_pos=2), type=PCLocType.TRAINER, map_id=[THE_UNDER_ID]),
+    Locations.Chests.under_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE63, bit_pos=5), type=PCLocType.CHEST, map_id=[THE_UNDER_ID])
 }
 
+# TODO you dont need Power Up Part here (should we make it a requirement or not? Then Power Up Part is a useless item)
 under_2_locations: Dict[str, PCLocData] = {
-    Locations.Misc.r_disk: None,
-    Locations.Trainers.kloak: None,
-    Locations.Trainers.dagur: None,
-    Locations.ShadowPokemon.ledian_capture: None
+    Locations.Misc.r_disk: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED0, bit_pos=5), type=PCLocType.ITEM, map_id=[THE_UNDER_ID]),
+    Locations.Trainers.kloak: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C13C, bit_pos=7), type=PCLocType.TRAINER, map_id=[THE_UNDER_ID]),
+    Locations.Trainers.dagur: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED0, bit_pos=4), type=PCLocType.TRAINER, map_id=[THE_UNDER_ID]),
+    Locations.ShadowPokemon.ledian_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=1), type=PCLocType.SHADOW, map_id=[THE_UNDER_ID])
 }
 
 under_forward_locations: Dict[str, PCLocData] = {
@@ -463,23 +465,23 @@ under_forward_locations: Dict[str, PCLocData] = {
 
 under_right_locations: Dict[str, PCLocData] = {
     Locations.Misc.ein_file_f: None,
-    Locations.Misc.subway_key: None,
-    Locations.Trainers.venus: None,
-    Locations.Trainers.frena: None,
-    Locations.Trainers.liaks: None,
-    Locations.Trainers.lonia: None,
-    Locations.Trainers.nelis: None,
-    Locations.ShadowPokemon.suicune_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=2), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.gligar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=3), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.stantler_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=4), type=PCLocType.EVENT, map_id=[]),
+    Locations.Misc.subway_key: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE61, bit_pos=0), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.Trainers.venus: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED7, bit_pos=1), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_ID]),
+    Locations.Trainers.frena: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C107, bit_pos=6), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.Trainers.liaks: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C107, bit_pos=7), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.Trainers.lonia: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C106, bit_pos=0), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.Trainers.nelis: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED7, bit_pos=5), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.ShadowPokemon.suicune_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=2), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_ID]),
+    Locations.ShadowPokemon.gligar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=3), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.ShadowPokemon.stantler_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=4), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_B1F_ID]),
     Locations.ShadowPokemon.piloswine_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=5), type=PCLocType.EVENT, map_id=[]),
     Locations.ShadowPokemon.sneasel_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=6), type=PCLocType.EVENT, map_id=[]),
-    Locations.Chests.under_chest_2: None,
-    Locations.Chests.under_chest_3: None,
-    Locations.Chests.under_chest_4: None,
-    Locations.Chests.under_chest_5: None,
-    Locations.Chests.under_chest_6: None,
-    Locations.Chests.under_chest_7: None
+    Locations.Chests.under_chest_2: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE63, bit_pos=6), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_ID]),
+    Locations.Chests.under_chest_3: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E4, bit_pos=5), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_ID]),
+    Locations.Chests.under_chest_4: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=1), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_B1F_SIDE_ID]),
+    Locations.Chests.under_chest_5: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=0), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_B1F_SIDE_ID]),
+    Locations.Chests.under_chest_6: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE63, bit_pos=7), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.Chests.under_chest_7:  PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=2), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_SUBWAY_ID])
 }
 
 under_up_locations: Dict[str, PCLocData] = {
@@ -538,8 +540,8 @@ lab_shutter_locations: Dict[str, PCLocData] = {
 }
 
 lab_outside_gate_locations: Dict[str, PCLocData] = {
-    Locations.Misc.dukings_second_mail_received: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C170, bit_pos=1), type=PCLocType.EVENT, map_id=[LAB_OUTSIDE_ID])
-    Locations.Chests.lab_chest_1: None
+    Locations.Misc.dukings_second_mail_received: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C170, bit_pos=1), type=PCLocType.EVENT, map_id=[LAB_OUTSIDE_ID]),
+    Locations.Chests.lab_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5C, bit_pos=1), type=PCLocType.CHEST, map_id=[LAB_OUTSIDE_ID])
 }
 
 lab_locations = lab_outside_gate_locations | lab_subway_locations | lab_main_locations | lab_shutter_locations | lab_main_after_key_locations | lab_main_after_puzzle_locations

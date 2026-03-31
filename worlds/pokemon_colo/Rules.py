@@ -348,7 +348,7 @@ class ColosseumRules:
         return state.has(Items.Progression.region_unlock, self.player)
 
     def access_second_pyrite(self, state: CollectionState) -> bool:
-        return self.access_pyrite(state) and state.has(Items.Progression.time_flute, self.player) and self.access_lab(state)
+        return self.access_pyrite(state) and self.dukings_second_mail_received(state)
 
     def access_under(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.elevator_key, self.player)
@@ -397,6 +397,9 @@ class ColosseumRules:
     
     def dukings_mail_read(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.dukings_mail_read, self.player)
+    
+    def dukings_second_mail_received(self, state: CollectionState) -> bool:
+        return state.has(Items.Progression.dukings_second_mail_received, self.player)
 
     def has_defeated_mirorb(self, state: CollectionState) -> bool:
         return state.has(Items.Progression.mirorb_defeated, self.player)

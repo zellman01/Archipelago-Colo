@@ -2,7 +2,7 @@ from typing import NamedTuple, List
 from BaseClasses import Location
 from .Strings import Locations, Regions
 from typing import Dict, List, TYPE_CHECKING
-from .Options import ColosseumOptions, ColosseumSanity
+from .Options import ColosseumOptions, ColosseumSanity, Goal
 from .Helpers import PCRamData, PCLocType
 from .client.constants import *
 
@@ -611,51 +611,51 @@ all_postgame = postgame_purify
 all_locations = start_locations | starter_pokemon | outside_city_locations | all_phenac | all_pyrite | all_agate | all_postgame | construction_locations | mt_battle_locations | pyrite_cave_extra | pyrite_2_locations | pyrite_jail_cell_locations | under_locations | lab_locations | realgam_tower_locations
 
 regions_to_locations: Dict[str, Dict[str, PCLocData]] = {
-    Regions.menu: start_locations,
+    Regions.menu: [],
     Regions.rematch: [], # Do not put any locations here, this is to seperate rematch regions into their own seperate master region node
     Regions.phenac: [], # Dynamically modified
-    Regions.phenac_city_pregym: pregym_locations,
+    Regions.phenac_city_pregym: [],
     Regions.phenac_colosseum: [],
     Regions.phenac_colosseum_r2: [],
     Regions.phenac_colosseum_r3: [],
     Regions.phenac_colosseum_r4: [],
-    Regions.outside_city: outside_city_locations,
-    Regions.rematches_dakim: rematches_dakim_locations,
-    Regions.rematches_dakim_pyrite: rematches_dakim_pyrite_locations,
-    Regions.rematches_dakim_pyrite_building_and_cave: rematches_dakim_pyrite_building_and_cave_locations,
-    Regions.rematches_mirorb: rematches_mirorb_locations,
-    Regions.pyrite: pyrite_locations,
-    Regions.pyrite_building : pyrite_building_locations,
+    Regions.outside_city: [],
+    Regions.rematches_dakim: [],
+    Regions.rematches_dakim_pyrite: [],
+    Regions.rematches_dakim_pyrite_building_and_cave: [],
+    Regions.rematches_mirorb: [],
+    Regions.pyrite: [],
+    Regions.pyrite_building : [],
     Regions.pyrite_cave: [], # Dynamically modified
-    Regions.the_under: under_1_locations,
-    Regions.the_under_2: under_2_locations,
+    Regions.the_under: [],
+    Regions.the_under_2: [],
     Regions.the_under_f: [],
-    Regions.the_under_r: under_right_locations,
-    Regions.the_under_u: under_up_locations,
+    Regions.the_under_r: [],
+    Regions.the_under_u: [],
     Regions.under_colosseum: [],
     Regions.under_colosseum_r2: [],
     Regions.under_colosseum_r3: [],
     Regions.under_colosseum_r4: [],
-    Regions.pyrite_colosseum: pyrite_colosseum_locations,
+    Regions.pyrite_colosseum: [],
     Regions.pyrite_colosseum_r1: [],
     Regions.pyrite_colosseum_r2: [],
     Regions.pyrite_colosseum_r3: [],
     Regions.pyrite_colosseum_r4: [],
     Regions.pyrite_2: pyrite_2_locations,
     Regions.pyrite_jail_cell: pyrite_jail_cell_locations,
-    Regions.construction: construction_locations,
+    Regions.construction: [],
     Regions.agate: agate_locations,
     Regions.purify: [],
-    Regions.mt_battle: mt_battle_locations,
-    Regions.lab: lab_outside_gate_locations,
-    Regions.lab_shutter: lab_shutter_locations,
-    Regions.lab_main: lab_main_locations,
-    Regions.lab_main_after_key: lab_main_after_key_locations,
-    Regions.lab_main_after_puzzle: lab_main_after_puzzle_locations,
-    Regions.lab_station: lab_subway_locations,
-    Regions.realgam: tower_pregate_locations,
+    Regions.mt_battle: [],
+    Regions.lab: [],
+    Regions.lab_shutter: [],
+    Regions.lab_main: [],
+    Regions.lab_main_after_key: [],
+    Regions.lab_main_after_puzzle: [],
+    Regions.lab_station: [],
+    Regions.realgam: [],
     Regions.pre_final: [], # Dynamically modified
-    Regions.final: tower_colosseum_locations,
+    Regions.final: [],
     Regions.snagem: [],
 }
 
@@ -678,12 +678,49 @@ starter_trainer_locations_1_list = [
     Locations.Trainers.bluno_1
 ]
 
-def set_location_options(options: ColosseumOptions) -> Dict[str, Dict[str, PCLocData]]:
+# Set local_regions to have the minimum required locations for the goal
+def goal_locations(options: ColosseumOptions) -> Dict[str, Dict[str, PCLocData]]:
     local_regions = regions_to_locations.copy()
-    local_phenac = phenac_locations.copy()
-    local_relic = relic_stone_locations.copy()
-    local_tower = tower_postgate_locations.copy()
-    local_cave = pyrite_cave_locations.copy()
+    local_regions[Regions.menu] = start_locations
+    local_regions[Regions.outside_city] = outside_city_locations
+    local_regions[Regions.phenac] = phenac_locations
+    local_regions[Regions.phenac_city_pregym] = pregym_locations
+    local_regions[Regions.pyrite] = pyrite_locations
+    local_regions[Regions.construction] = construction_locations
+    local_regions[Regions.pyrite_colosseum] = pyrite_colosseum_locations
+    local_regions[Regions.pyrite_building] = pyrite_building_locations
+    local_regions[Regions.pyrite_cave] = pyrite_cave_locations
+    if options.goal >= Goal.option_dakim:
+        local_regions[Regions.mt_battle] = mt_battle_locations
+        local_regions[Regions.purify] = relic_stone_locations
+    if options.goal >= Goal.option_venus:
+        local_regions[Regions.the_under] = under_1_locations
+        local_regions[Regions.the_under_2] = under_2_locations
+        local_regions[Regions.the_under_r] = under_right_locations
+        local_regions[Regions.the_under_f] = under_forward_locations
+        local_regions[Regions.the_under_u] = under_up_locations
+    if options.goal >= Goal.option_ein:
+        local_regions[Regions.lab] = lab_outside_gate_locations
+        local_regions[Regions.lab_shutter] = lab_shutter_locations
+        local_regions[Regions.lab_main] = lab_main_locations
+        local_regions[Regions.lab_main_after_key] = lab_main_after_key_locations
+        local_regions[Regions.lab_main_after_puzzle] = lab_main_after_puzzle_locations
+        local_regions[Regions.lab_station] = lab_subway_locations
+    if options.goal >= Goal.option_evice:
+        local_regions[Regions.realgam] = tower_pregate_locations
+        local_regions[Regions.pre_final] = tower_postgate_locations
+        local_regions[Regions.final] = tower_colosseum_locations
+    if options.goal >= Goal.option_snagem_hideout:
+        pass
+    return local_regions
+
+# Set extra locations based on other options
+def set_location_options(options: ColosseumOptions) -> Dict[str, Dict[str, PCLocData]]:
+    local_regions = goal_locations(options)
+    local_phenac = local_regions[Regions.phenac].copy()
+    local_relic = local_regions[Regions.purify].copy()
+    local_tower = local_regions[Regions.pre_final].copy()
+    local_cave = local_regions[Regions.pyrite_cave].copy()
 
     trainer = starter_trainer_locations_list[options.phenac_starter_choice]
     starter = starter_pokemon_captured_list[options.phenac_starter_choice]
@@ -695,10 +732,10 @@ def set_location_options(options: ColosseumOptions) -> Dict[str, Dict[str, PCLoc
     local_relic.update(starter_pokemon_purified)
     local_tower[trainer_1] = starter_trainer_locations_1[trainer_1]
 
-    if options.postgame_shadow_pokemon:
+    if (options.postgame_shadow_pokemon and options.goal != Goal.option_mirorb) or options.goal == Goal.option_purify_all_pokemon:
         local_relic.update(postgame_purify)
 
-    if options.mirakle_b: 
+    if options.mirakle_b and options.goal != Goal.option_mirorb: 
         local_cave.update(pyrite_cave_extra)
 
     if options.colosseum_sanity != ColosseumSanity.option_off:
@@ -710,12 +747,14 @@ def set_location_options(options: ColosseumOptions) -> Dict[str, Dict[str, PCLoc
     local_regions[Regions.phenac] = local_phenac
     local_regions[Regions.pyrite_cave] = local_cave
     local_regions[Regions.purify] = local_relic
-    local_regions[Regions.pre_final] = local_tower
+    if options.goal >= Goal.option_evice: # Extra assurance that a location will not be added that cannot be reached to error out
+        local_regions[Regions.pre_final] = local_tower
 
-    if not options.rematches:
-        local_regions[Regions.rematches_dakim] = {}
-        local_regions[Regions.rematches_dakim_pyrite] = {}
-        local_regions[Regions.rematches_dakim_pyrite_building_and_cave] = {}
-        local_regions[Regions.rematches_mirorb] = {}
+    # Needs to be ignored if the goal is Miror B, as rematches are only possible after Miror B
+    if options.rematches and options.goal != Goal.option_mirorb:
+        local_regions[Regions.rematches_dakim] = rematches_dakim_locations
+        local_regions[Regions.rematches_dakim_pyrite] = rematches_dakim_pyrite_locations
+        local_regions[Regions.rematches_dakim_pyrite_building_and_cave] = rematches_dakim_pyrite_building_and_cave_locations
+        local_regions[Regions.rematches_mirorb] = rematches_mirorb_locations
 
     return local_regions

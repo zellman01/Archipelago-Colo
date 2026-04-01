@@ -5,18 +5,26 @@ from worlds.ladx.Options import DefaultOffToggle
 
 class Goal(Choice):
     """
-    Sets the endgoal of the game (Only up to Evice is supported at this time)
-    Evice - Default vanilla goal, defeat Evice in Tower Colosseum
-    Snagem Hideout - Defeat Gonzap in the Snagem Hideout
-    Purify All Pokemon - Purify every Shadow Pokemon
-    Mt. Battle - Clear the Mt. Battle mode from the main menu (battle 100)
+    Sets the endgoal of the game (Only up to Venus is supported at this time)
+    Miror B - Defeat Miror B in the Pyrite Cave arena
+    Dakim - Defeat Dakim in Mt. Battle on the first visit
+    Venus - Defeat Venus in the Under Station
+    Ein - Defeat Ein in Cipher Lab (Unsupported)
+    Evice - Default vanilla goal, defeat Evice in Tower Colosseum (Unsupported)
+    Snagem Hideout - Defeat Gonzap in the Snagem Hideout (Unsupported)
+    Purify All Pokemon - Purify every Shadow Pokemon (Unsupported)
+    Mt. Battle - Clear the Mt. Battle mode from the main menu (battle 100) (Unsupported)
     """
     display_name = "Goal"
-    option_evice = 0
-    option_snagem_hideout = 1
-    option_purify_all_pokemon = 2
-    option_mt_battle = 3
-    default = 0 # Vanilla victory condition
+    option_mirorb = 0
+    option_dakim = 1
+    option_venus = 2
+    option_ein = 3
+    option_evice = 4
+    option_snagem_hideout = 5
+    option_purify_all_pokemon = 6
+    option_mt_battle = 7
+    default = 4 # Vanilla victory condition
 
 class RealgamTowerUnlock(Choice):
     """When to turn the Construction Site into Realgam Tower (NOT IMPLEMENTED)"""
@@ -81,7 +89,7 @@ class AddMtBattle(Toggle):
     display_name = "Add Mt. Battle"
 
 class MirakleB(Toggle):
-    """Adds Mirakle B to the list of locations to be checked"""
+    """Adds Mirakle B to the list of locations to be checked. Ignored if goal is Miror B."""
     display_name = "Mirakle B Fight"
 
 class Rematches(DefaultOffToggle):

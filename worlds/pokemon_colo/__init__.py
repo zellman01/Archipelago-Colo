@@ -169,6 +169,10 @@ class ColosseumWorld(World):
         win_loc: Location = None
         if self.options.goal == Goal.option_evice:
             win_loc = self.multiworld.get_location(Locations.Trainers.evice, self.player)
+        if self.options.goal == Goal.option_mirorb:
+            win_loc = self.multiworld.get_location(Locations.Misc.mirorb_defeated, self.player)
+        if self.options.goal == Goal.option_dakim:
+            win_loc = self.multiworld.get_location(Locations.Misc.dakim_defeated, self.player)
         win_loc.place_locked_item(goal_item)
         self.items_created += 1
 
@@ -176,13 +180,15 @@ class ColosseumWorld(World):
         # Set event items
         defeat_dakim_loc = self.multiworld.get_location(Locations.Misc.dakim_defeated, self.player)
         dakim_event = ColosseumItem(Items.Progression.dakim_defeated, ItemClassification.progression, self.item_name_to_id[Items.Progression.dakim_defeated], self.player)
-        defeat_dakim_loc.place_locked_item(dakim_event)
-        self.items_created += 1
+        if not defeat_dakim_loc.locked: # Make sure that the location is not already locked from the goal possibly being placed in this item spot
+            defeat_dakim_loc.place_locked_item(dakim_event)
+            self.items_created += 1
         
         defeat_mirorb_loc = self.multiworld.get_location(Locations.Misc.mirorb_defeated, self.player)
         mirorb_event = ColosseumItem(Items.Progression.mirorb_defeated, ItemClassification.progression, self.item_name_to_id[Items.Progression.mirorb_defeated], self.player)
-        defeat_mirorb_loc.place_locked_item(mirorb_event)
-        self.items_created += 1
+        if not defeat_mirorb_loc.locked:
+            defeat_mirorb_loc.place_locked_item(mirorb_event)
+            self.items_created += 1
         
         dukings_mail_read = self.multiworld.get_location(Locations.Misc.dukings_mail_read, self.player)
         dukings_mail_event = ColosseumItem(Items.Progression.dukings_mail_read, ItemClassification.progression, self.item_name_to_id[Items.Progression.dukings_mail_read], self.player)

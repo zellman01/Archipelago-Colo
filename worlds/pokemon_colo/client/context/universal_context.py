@@ -1,4 +1,4 @@
-from CommonClient import CommonContext, ClientCommandProcessor
+from CommonClient import CommonContext, ClientCommandProcessor, logger
 
 class UniversalCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx: CommonContext, server_addr: str = None):

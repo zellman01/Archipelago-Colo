@@ -3,7 +3,7 @@
 import asyncio
 import Utils
 
-from .universal_context import UniversalContext, UniversalCommandProcessor
+from .universal_context import UniversalContext, UniversalCommandProcessor, logger
 from ...client.constants import *
 from ..links.network_engine import ArchipelagoNetworkEngine
 

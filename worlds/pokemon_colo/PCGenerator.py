@@ -10,6 +10,7 @@ from gclib.gcm import GCM
 
 from .iso_helper.fsys_helper.FsysFileDetail import FileType
 from .iso_helper.IsoPokemonDefinitions.Pokemarts import Pokemart
+from .iso_helper.IsoPokemonDefinitions.TrainerPokemon import TrainerPokemon
 from .iso_helper.fsys_helper.FsysFileEntry import REL
 from .iso_helper.fsys_helper.FsysFile import FsysFile
 from .Helpers import StringByteFunction as sbf
@@ -75,6 +76,23 @@ class ColosseumRandomizer:
             pocket_menu_rel.encode()
 
         self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu_fsys.save()
+
+
+        # Proof of concept for modifying a Pokemon stats (right now, change Espeon into Latias (no stat changes))
+        TrainerPokemon.pokemon_ids = list(range(1, 411))
+        del TrainerPokemon.pokemon_ids[251:275]
+        common = self.gcm.read_file_data("files/common.fsys")
+        common_fsys = FsysFile("common.fsys", common)
+        common_rel = common_fsys.get_entry_by_filename("common_rel", FileType.REL)
+
+        if (isinstance(common_rel, REL)):
+            common_rel.decode()
+            # Changes Willie's pokemon species to random pokemon
+            # willie_data = TrainerPokemon(238, common_rel)
+            # willie_data.test()
+            common_rel.encode()
+
+        self.gcm.changed_files["files/common.fsys"] = common_fsys.save()
 
         # Handle rest of game randomization/AP related modifications to files
 

@@ -77,8 +77,6 @@ class ColosseumRandomizer:
 
         self.gcm.changed_files["files/pocket_menu.fsys"] = pocket_menu_fsys.save()
 
-
-        # Proof of concept for modifying a Pokemon stats (right now, change Espeon into Latias (no stat changes))
         TrainerPokemon.pokemon_ids = list(range(1, 411))
         del TrainerPokemon.pokemon_ids[251:275]
         common = self.gcm.read_file_data("files/common.fsys")

@@ -106,6 +106,10 @@ class ColosseumSanity(Choice):
     option_not_restricted = 1
     option_restricted = 2
 
+class Randomizer(DefaultOnToggle):
+    """Chooses if to randomize Pokemon in the game"""
+    display_name = "Randomize Pokemon"
+
 #class PurifyAmountLocations
 # Makes every 5 or 10 purify a location
 
@@ -123,3 +127,4 @@ class ColosseumOptions(PerGameCommonOptions):
     rui_unlock: RuiUnlock
     colosseum_sanity: ColosseumSanity
     rematches: Rematches
+    randomizer: Randomizer

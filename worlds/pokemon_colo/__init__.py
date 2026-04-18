@@ -41,6 +41,9 @@ class ColosseumWeb(WebWorld):
             ShadowPokemonAsItems,
             PhenacStarterChoice,
             PostgameShadowPokemon
+        ]),
+        OptionGroup("Randomization Settings", [
+            Randomizer
         ])
     ]
     options_presets = option_presets

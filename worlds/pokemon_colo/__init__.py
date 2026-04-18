@@ -235,7 +235,8 @@ class ColosseumWorld(World):
             "Seed": self.multiworld.seed,
             "Slot": self.player,
             "Name": self.player_name,
-            "Options": {},
+            "Difficulty": self.options.difficulty.value,
+            "Randomizer": self.options.randomizer.value,
             "Locations": {},
             AP_WORLD_VERSION_NAME: CLIENT_VERSION
         }

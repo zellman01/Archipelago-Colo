@@ -85,9 +85,11 @@ class ColosseumRandomizer:
 
         if (isinstance(common_rel, REL)):
             common_rel.decode()
+            diff = self.output_data["Difficulty"]
+            random = self.output_data["Randomizer"]
             # Changes Willie's pokemon species to random pokemon
-            # willie_data = TrainerPokemon(238, common_rel)
-            # willie_data.test()
+            willie_data = TrainerPokemon(238, common_rel)
+            willie_data.generation(2, diff, random)
             common_rel.encode()
 
         self.gcm.changed_files["files/common.fsys"] = common_fsys.save()

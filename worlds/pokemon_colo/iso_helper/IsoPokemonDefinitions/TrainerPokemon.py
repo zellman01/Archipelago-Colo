@@ -1,10 +1,14 @@
 import random
 
 from worlds.pokemon_colo.iso_helper.fsys_helper.FsysFileEntry import REL, DataReadHelper
+from worlds.pokemon_colo.Options import Difficulty, Randomizer
 
 POKEMON_SLOT_OFFSET = 0x50
 NEXT_MOVE_OFFSET = 0xA
 START_OFFSET = 0x9FE28
+EASY_DIFFICULTY_MODIFIER = 5
+HARD_DIFFICULTY_MODIFIER = 10
+EXTREME_DIFFICULTY_MODIFIER = 15
 
 class Offsets:
     class ByteStats:
@@ -29,7 +33,7 @@ class Offsets:
         gender = 0x1
         nature = 0x2
         shadowId = 0x3
-        level = 0x4
+        level = 0x4 # 1 byte
         aiRole = 0x6
         happiness = 0x8
         speciesId = 0xA
@@ -52,9 +56,33 @@ class TrainerPokemon:
         self.first_index = first_index
         self.rel_entry = rel_entry
 
-    def test(self):
-        slot_1 = (POKEMON_SLOT_OFFSET * self.first_index) + START_OFFSET
-        DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_1 + Offsets.Vars.speciesId, random.choice(self.pokemon_ids), 2)
-        slot_2 = slot_1 + POKEMON_SLOT_OFFSET
-        DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_2 + Offsets.Vars.speciesId, random.choice(self.pokemon_ids), 2)
-        
+    def generation(self, slotAmount, dif: Difficulty, random: Randomizer) -> bool:
+        """
+        Runs the generation/modifying code for trainers based on AP world settings.
+        Returns false only if the slotAmount is out of range
+
+        :param slotAmount: The total amount of slots for the given trainer (max: 6 min: 2)
+        :param dif: The Difficulty Options class
+        :param random: The Randomizer Options class
+        """
+        if slotAmount > 6 or slotAmount < 2:
+            return False
+        levelMod = 0
+        if dif == Difficulty.option_easy:
+            levelMod = -EASY_DIFFICULTY_MODIFIER # Downward adjustment
+        elif dif == Difficulty.option_hard:
+            levelMod = HARD_DIFFICULTY_MODIFIER
+        elif dif == Difficulty.option_extreme:
+            levelMod = EXTREME_DIFFICULTY_MODIFIER
+        for i in range(0, slotAmount):
+            self.modify_slot(i, levelMod, random)
+        return True
+
+    def modify_slot(self, slotNum, levelMod, random_yes: Randomizer):
+        slot_offset = START_OFFSET + (POKEMON_SLOT_OFFSET * self.first_index) + (POKEMON_SLOT_OFFSET * slotNum)
+        if random_yes:
+            DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.speciesId, random.choice(self.pokemon_ids), 2)
+        if levelMod != 0: # Adjust other stats as well once formulas are correct
+            tmpLevel = DataReadHelper.int_from_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.level, 1)
+            tmpLevel += levelMod
+            DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.level, tmpLevel, 1)

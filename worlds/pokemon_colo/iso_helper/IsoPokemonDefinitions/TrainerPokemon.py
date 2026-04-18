@@ -33,8 +33,9 @@ class Offsets:
         aiRole = 0x6
         happiness = 0x8
         speciesId = 0xA
-        pokeball = 0xC # What ball it comes out of
-        heldItemId = 0x14
+        pokeball = 0xC # What ball it comes out of (2 bytes)
+        heldItemId = 0x10
+        nameId = 0x14 # 4 bytes
         ivs = 0x1C # User ByteStats with this
         evs = 0x22 # Use Stats with this
         moveArrayStart = 0x30

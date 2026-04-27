@@ -25,9 +25,12 @@ class Offsets:
         pokedex_color = 0x0
         face_id = 0x2
         body_id = 0x4
-    class Generic:
+    class Vars:
+        ability_1_offset = 0x32
+        ability_2_offset = 0x33
         tm01_offset = 0x34
         hm01_offset = 0x66
+        base_offset = 0x84
 
 class Pokemon:
     internal_id: int = 0 # NOT the same as national pokedex for any Gen 3 Pokemon
@@ -37,3 +40,24 @@ class Pokemon:
         self.rel_entry = rel_entry
 
         self.pokemon_offset_addr = POKEMON_DATA_START + (POKEMON_STRUCT_LEN * self.internal_id)
+
+    def get_base_stat(self, offset) -> int:
+        return DataReadHelper.int_from_bytes(self.rel_entry, self.pokemon_offset_addr + Offsets.Vars.base_offset + offset, 2)
+
+    def get_hp(self) -> int:
+        return self.get_base_stat(Offsets.Stats.hp)
+
+    def get_attack(self) -> int:
+        return self.get_base_stat(Offsets.Stats.attack)
+
+    def get_defense(self) -> int:
+        return self.get_base_stat(Offsets.Stats.defense)
+
+    def get_sp_attack(self) -> int:
+        return self.get_base_stat(Offsets.Stats.spatk)
+
+    def get_sp_defense(self) -> int:
+        return self.get_base_stat(Offsets.Stats.spdef)
+
+    def get_speed(self) -> int:
+        return self.get_base_stat(Offsets.Stats.speed)

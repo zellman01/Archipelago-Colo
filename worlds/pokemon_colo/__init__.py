@@ -237,6 +237,7 @@ class ColosseumWorld(World):
             "Name": self.player_name,
             "Difficulty": self.options.difficulty.value,
             "Randomizer": self.options.randomizer.value,
+            "XPModifier": self.options.expmodifier.value,
             "Locations": {},
             AP_WORLD_VERSION_NAME: CLIENT_VERSION
         }

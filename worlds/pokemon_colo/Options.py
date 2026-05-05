@@ -110,6 +110,17 @@ class Randomizer(DefaultOnToggle):
     """Chooses if to randomize Pokemon in the game"""
     display_name = "Randomize Pokemon"
 
+class ExpModifier(NamedRange):
+    """Chooses what to make the EXP multiplier. Higher value is more, lower is less. Default is 1 (NOT FULLY IMPLEMENTED)"""
+    display_name = "EXP Modifer"
+    range_start = 0.25
+    range_end = 4
+    default = 1
+    special_range_names = {
+        "Hard": 0.5,
+        "Easy": 2,
+    }
+
 #class PurifyAmountLocations
 # Makes every 5 or 10 purify a location
 
@@ -128,3 +139,4 @@ class ColosseumOptions(PerGameCommonOptions):
     colosseum_sanity: ColosseumSanity
     rematches: Rematches
     randomizer: Randomizer
+    expmodifier: ExpModifier

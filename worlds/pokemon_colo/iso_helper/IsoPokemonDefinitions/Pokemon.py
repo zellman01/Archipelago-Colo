@@ -26,6 +26,7 @@ class Offsets:
         face_id = 0x2
         body_id = 0x4
     class Vars:
+        exp = 0x6
         ability_1_offset = 0x32
         ability_2_offset = 0x33
         tm01_offset = 0x34
@@ -40,6 +41,10 @@ class Pokemon:
         self.rel_entry = rel_entry
 
         self.pokemon_offset_addr = POKEMON_DATA_START + (POKEMON_STRUCT_LEN * self.internal_id)
+
+    def change_xp_yield(self, mult) -> None:
+        base = DataReadHelper.int_from_bytes(self.rel_entry, self.pokemon_offset_addr + Offsets.Vars.exp, 2)
+        DataReadHelper.write_int_to_bytes(self.rel_entry, self.pokemon_offset_addr + Offsets.Vars.exp, base * mult, 2)
 
     def get_base_stat(self, offset) -> int:
         return DataReadHelper.int_from_bytes(self.rel_entry, self.pokemon_offset_addr + Offsets.Vars.base_offset + offset, 2)

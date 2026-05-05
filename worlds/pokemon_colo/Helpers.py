@@ -10,6 +10,7 @@ class PCLocType(Enum):
     ITEM = 4
     EVENT = 5
     REMATCH = 6
+    LAB_FIGHT = 7
 
 class PCItemType(Enum):
     NONE = -1

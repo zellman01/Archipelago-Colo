@@ -76,7 +76,7 @@ def calc_stat(id: int, level: int, nature_name: str, stat: int = 0):
 
     :param id: The internal ID of the Pokemon
     :param level: The level of the Pokemon
-    :param natu
+    :param nature: Nature of the given pokemon
     """
     pass
 class PCCommandProcessor(BaseCommandProcessor):
@@ -378,6 +378,15 @@ class PCContext(BaseContext):
                         return True
                 if not self.trainer_win and read_byte(IN_BATTLE) and read_byte(BATTLE_WIN_CHECK) == 0x02:
                         self.trainer_win = True # Enable a flag to keep checking after the fight is over to get the trainer check
+            case PCLocType.LAB_FIGHT:
+                bit = bits(ram_data)
+                if (bit[ram_info.bit_pos]):
+                    if read_byte(BATTLE_WIN_CHECK) == 0x02: # Win
+                        return True
+                    elif read_byte(BATTLE_WIN_CHECK) == 0x03: # Lose
+                        bit[ram_info.bit_pos] = bit[ram_info.bit_pos]&0 # Set the bit to 0
+                        set_value = [bin(x)[2:] for x in bit]
+                        write_bytes_and_validate(ptr_addr(loc_data.ram_info.ram_addr, loc_data.ram_info.ptr_offset), set_value)
             case PCLocType.SHADOW:
                 if read_byte(IN_BATTLE):
                     bit = bits(ram_data)

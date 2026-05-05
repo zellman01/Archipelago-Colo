@@ -1,7 +1,9 @@
 import random
 
+from worlds.pokemon_colo.iso_helper.IsoPokemonDefinitions.Pokemon import Pokemon
 from worlds.pokemon_colo.iso_helper.fsys_helper.FsysFileEntry import REL, DataReadHelper
 from worlds.pokemon_colo.Options import Difficulty, Randomizer
+from worlds.pokemon_colo.Helpers import StatGen
 
 POKEMON_SLOT_OFFSET = 0x50
 NEXT_MOVE_OFFSET = 0xA
@@ -75,14 +77,22 @@ class TrainerPokemon:
         elif dif == Difficulty.option_extreme:
             levelMod = EXTREME_DIFFICULTY_MODIFIER
         for i in range(0, slotAmount):
-            self.modify_slot(i, levelMod, random)
+            self.modify_slot_start(i, levelMod, random)
         return True
 
-    def modify_slot(self, slotNum, levelMod, random_yes: Randomizer):
-        slot_offset = START_OFFSET + (POKEMON_SLOT_OFFSET * self.first_index) + (POKEMON_SLOT_OFFSET * slotNum)
+    def modify_slot_start(self, slot_num, level_mod, random_yes: Randomizer):
+        """
+        Will modify opponent trainer's slots. Will do nothing if above the max amount it normally has.
+        """
+        slot_offset = START_OFFSET + (POKEMON_SLOT_OFFSET * self.first_index) + (POKEMON_SLOT_OFFSET * slot_num)
+        used = DataReadHelper.int_from_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.speciesId, 2) != 0
+        if used:
+            self.modify_slot(slot_offset, level_mod, random_yes)
+
+    def modify_slot(self, slot_offset, level_mod, random_yes: Randomizer): # To modify a slot
         if random_yes:
             DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.speciesId, random.choice(self.pokemon_ids), 2)
-        if levelMod != 0: # Adjust other stats as well once formulas are correct
+        if level_mod != 0:
             tmpLevel = DataReadHelper.int_from_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.level, 1)
-            tmpLevel += levelMod
+            tmpLevel += level_mod
             DataReadHelper.write_int_to_bytes(self.rel_entry.data, slot_offset + Offsets.Vars.level, tmpLevel, 1)

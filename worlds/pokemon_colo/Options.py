@@ -117,8 +117,8 @@ class ExpModifier(NamedRange):
     range_end = 4
     default = 1
     special_range_names = {
-        "Hard": 0.5,
-        "Easy": 2,
+        "hard": 0.5,
+        "easy": 2,
     }
 
 #class PurifyAmountLocations

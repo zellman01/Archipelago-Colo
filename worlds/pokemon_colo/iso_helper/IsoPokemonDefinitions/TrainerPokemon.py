@@ -3,7 +3,6 @@ import random
 from worlds.pokemon_colo.iso_helper.IsoPokemonDefinitions.Pokemon import Pokemon
 from worlds.pokemon_colo.iso_helper.fsys_helper.FsysFileEntry import REL, DataReadHelper
 from worlds.pokemon_colo.Options import Difficulty, Randomizer
-from worlds.pokemon_colo.Helpers import StatGen
 
 POKEMON_SLOT_OFFSET = 0x50
 NEXT_MOVE_OFFSET = 0xA

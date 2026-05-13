@@ -61,7 +61,7 @@ class ColosseumWeb(WebWorld):
     ]
 
 class ColosseumWorld(World):
-    """Colosseum Description"""
+    """In the new Orre region, a sinister organization is capturing Pokémon and misusing them. It's up to you to restore balance. Seek out all the Shadow Pokémon, snag them, and restore their spirit."""
     game = "Pokemon Colosseum"
     options_dataclass = ColosseumOptions
     options: ColosseumOptions

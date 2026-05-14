@@ -13,6 +13,7 @@ from .iso_helper.IsoPokemonDefinitions.PokemonItem import PokemonItem
 from .iso_helper.fsys_helper.FsysFileDetail import FileType
 from .iso_helper.IsoPokemonDefinitions.Pokemarts import Pokemart
 from .iso_helper.IsoPokemonDefinitions.TrainerPokemon import TrainerPokemon
+from .iso_helper.IsoPokemonDefinitions.Treasure import Treasure
 from .iso_helper.fsys_helper.FsysFileEntry import REL
 from .iso_helper.fsys_helper.FsysFile import FsysFile
 from .Helpers import StringByteFunction as sbf
@@ -100,6 +101,9 @@ class ColosseumRandomizer:
             # Changes Willie's pokemon species to random pokemon
             willie_data = TrainerPokemon(238, common_rel)
             willie_data.generation(2, diff, random)
+            # Change the first chest to a master ball
+            phenac_chest_1 = Treasure(1, common_rel)
+            phenac_chest_1.modify_item(1)
             common_rel.encode()
 
         self.gcm.changed_files["files/common.fsys"] = common_fsys.save()

@@ -8,6 +8,8 @@ from CommonClient import logger
 
 from gclib.gcm import GCM
 
+from .iso_helper.IsoPokemonDefinitions.PokemonItem import PokemonItem
+
 from .iso_helper.fsys_helper.FsysFileDetail import FileType
 from .iso_helper.IsoPokemonDefinitions.Pokemarts import Pokemart
 from .iso_helper.IsoPokemonDefinitions.TrainerPokemon import TrainerPokemon
@@ -55,6 +57,14 @@ class ColosseumRandomizer:
         dol_data.write(sbf.string_to_bytes(three_char_seed, len(three_char_seed)))
         dol_data.seek(0x39A754)
         dol_data.write(sbf.string_to_bytes(three_char_seed, len(three_char_seed)))
+
+        key_item_ids = list(range(349, 397))
+        scanned_samples = list(range(12, 29, 2))
+        for id in scanned_samples:
+            del key_item_ids[id] # Remove scanned DNA samples from all key item list
+        for id in key_item_ids: # Updates all key items remaining to not be added to the bag upon obtaining them
+            item = PokemonItem(dol_data, id)
+            item.change_pocket(0)
 
         # Inject custom code
         self.inject_custom_code(dol_data)

@@ -22,16 +22,6 @@ AP_REFUSED = "AP refused to connect for one or more reasons, see above for detai
 WAIT_TIMER_LONG: float = 5
 WAIT_TIMER_SHORT: float = 0.125
 
-# Nature help
-ALL_NATURES: dict = {
-    Natures.HARDY: NatureInfo(StatName.ATTACK, StatName.ATTACK),
-    Natures.LONELY: NatureInfo(StatName.ATTACK, StatName.DEFENSE),
-    Natures.ADAMANT: NatureInfo(StatName.ATTACK, StatName.SP_ATTACK),
-    Natures.NAUGHTY: NatureInfo(StatName.ATTACK, StatName.SP_DEFENSE),
-    Natures.BRAVE: NatureInfo(StatName.ATTACK, StatName.SPEED),
-    Natures.BOLD: NatureInfo(StatName.DEFENSE, StatName.ATTACK)
-}
-
 # Map constants for get_map_id
 MENU_ID = 0
 OUTSKIRT_STAND_ID = 1

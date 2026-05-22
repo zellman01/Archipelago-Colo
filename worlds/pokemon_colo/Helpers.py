@@ -21,44 +21,46 @@ class PCItemType(Enum):
     BERRY = 4 
     TM = 5
 
-class Natures(Enum):
-    HARDY = 0
-    LONELY = 1
-    ADAMANT = 2
-    NAUGHTY = 3
-    BRAVE = 4
-    BOLD = 5
-    DOCILE = 6
-    IMPISH = 7
-    LAX = 8
-    RELAXED = 9
-    MODEST = 10
-    MILD = 11
-    BASHFUL = 12
-    RASH = 13
-    QUIET = 14
-    CALM = 15
-    GENTLE = 16
-    CAREFUL = 17
-    QUIRKY = 18
-    SASSY = 19
-    TIMID = 20
-    HASTY = 21
-    JOLLY = 22
-    NAIVE = 23
-    SERIOUS = 24
+class Nature:
+    stats = ["Atk", "Def", "Sp. Atk", "Sp. Def", "Spd"]
+    def __init__(self, stat1: int, stat2: int, gender: int):
+        """
+        Creates a Nature object for pokemon created for the player
 
-class StatName(Enum):
-    ATTACK = 0
-    DEFENSE = 1
-    SP_ATTACK = 2
-    SP_DEFENSE = 3
-    SPEED = 4
+        Paramerers
+        -------
+        stat1: The stat to decrease, represented as an int (0 = Atk, 1 = Def, 2 = Sp. Atk, 3 = Sp. Def, 4 = Spd)
 
-class NatureInfo(NamedTuple):
-    increase: StatName
-    decrease: StatName
+        stat2: Same as stat1, but to be increased
 
+        gender: What gender the pokemon is (0 = female, 1 = male)
+        """
+        self.dec = stat1
+        self.inc = stat2
+        self.gender = gender
+
+    def nature_hex(self) -> int:
+        grid = [[
+                [0x0014001E, 0x000B001E, 0x0012001E, 0x0009001E, 0x0002001E],
+                [0x0019001E, 0x0010001E, 0x0017001E, 0x000E001E, 0x0007001E],
+                [0x000A001E, 0x0001001E, 0x0008001E, 0x0018001E, 0x0011001E],
+                [0x000F001E, 0x001F001E, 0x0006001E, 0x0004001E, 0x0016001E],
+                [0x0005001E, 0x0015001E, 0x0003001E, 0x0013001E, 0x000C001E]
+                ],
+                [
+                [0x0004001F, 0x0014001F, 0x0002001F, 0x0012001F, 0x000B001F],
+                [0x0009001F, 0x0000001F, 0x0007001F, 0x0017001F, 0x0010001F],
+                [0x0013001F, 0x000A001F, 0x0011001F, 0x0008001F, 0x0001001F],
+                [0x0018001F, 0x000F001F, 0x0016001F, 0x000D001F, 0x0006001F],
+                [0x000E001F, 0x0005001F, 0x000C001F, 0x0003001F, 0x0015001F]
+                ]]
+        return grid[self.gender][self.inc][self.dec]
+
+    def get_dec_stat(self) -> str:
+        return self.stats[self.dec]
+
+    def get_inc_stat(self) -> str:
+        return self.stats[self.inc]
 
 class PCRamData(NamedTuple):
     """

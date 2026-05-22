@@ -1,8 +1,5 @@
 """ Commonly used constants for Pokemon Colosseum """
 
-from worlds.pokemon_colo.Helpers import Natures, NatureInfo, StatName
-
-
 CLIENT_VERSION = "V0.1.0"
 CLIENT_NAME = "Pokemon Colosseum Client"
 

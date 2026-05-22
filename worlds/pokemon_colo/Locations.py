@@ -491,7 +491,7 @@ under_up_locations: Dict[str, PCLocData] = {
 under_locations = under_1_locations | under_2_locations | under_right_locations | under_up_locations
 
 lab_subway_locations: Dict[str, PCLocData] = {
-    Locations.Misc.maingate_key: None,
+    Locations.Misc.maingate_key: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BE5C, bit_pos=5), type=PCLocType.CHEST, map_id=[]),
     Locations.Chests.lab_chest_2: None
 }
 
@@ -547,17 +547,17 @@ lab_outside_gate_locations: Dict[str, PCLocData] = {
 lab_locations = lab_outside_gate_locations | lab_subway_locations | lab_main_locations | lab_shutter_locations | lab_main_after_key_locations | lab_main_after_puzzle_locations
 
 tower_pregate_locations: Dict[str, PCLocData] = {
-    Locations.Misc.red_badge: None,
-    Locations.Misc.grn_badge: None,
-    Locations.Misc.blu_badge: None,
-    Locations.Misc.ylw_badge: None,
+    Locations.Misc.red_badge: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C121, bit_pos=6), type=PCLocType.EVENT, map_id=[]),
+    Locations.Misc.grn_badge: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BED9, bit_pos=7), type=PCLocType.EVENT, map_id=[]),
+    Locations.Misc.blu_badge: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C0ED, bit_pos=7), type=PCLocType.EVENT, map_id=[]),
+    Locations.Misc.ylw_badge: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C0FD, bit_pos=3), type=PCLocType.EVENT, map_id=[]),
     Locations.Trainers.bopen: None,
     Locations.Trainers.arton: None,
     Locations.Trainers.baila: None,
-    Locations.Trainers.mirorb_1: None,
-    Locations.Trainers.dakim_1: None,
-    Locations.Trainers.venus_1: None,
-    Locations.Trainers.ein_1: None,
+    Locations.Trainers.mirorb_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C121, bit_pos=6), type=PCLocType.TRAINER, map_id=[]),
+    Locations.Trainers.dakim_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BED9, bit_pos=7), type=PCLocType.TRAINER, map_id=[]),
+    Locations.Trainers.venus_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C0ED, bit_pos=7), type=PCLocType.TRAINER, map_id=[]),
+    Locations.Trainers.ein_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1C0FD, bit_pos=3), type=PCLocType.TRAINER, map_id=[]),
     Locations.ShadowPokemon.delibird_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=7), type=PCLocType.SHADOW, map_id=[]),
     Locations.ShadowPokemon.sunflora_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=6), type=PCLocType.SHADOW, map_id=[])
 }
@@ -583,7 +583,7 @@ tower_colosseum_locations: Dict[str, PCLocData] = {
     Locations.Trainers.nella: None,
     Locations.Trainers.ston: None,
     Locations.Trainers.nascour: None,
-    Locations.Trainers.evice: None,
+    Locations.Trainers.evice: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0X1BEDF, bit_pos=3), type=PCLocType.TRAINER, map_id=[]),
     Locations.ShadowPokemon.miltank_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=2), type=PCLocType.SHADOW, map_id=[]),
     Locations.ShadowPokemon.absol_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=3), type=PCLocType.SHADOW, map_id=[]),
     Locations.ShadowPokemon.houndoom_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=4), type=PCLocType.SHADOW, map_id=[]),

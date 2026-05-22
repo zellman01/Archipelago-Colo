@@ -471,11 +471,11 @@ under_right_locations: Dict[str, PCLocData] = {
     Locations.Trainers.liaks: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C107, bit_pos=7), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
     Locations.Trainers.lonia: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C106, bit_pos=0), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
     Locations.Trainers.nelis: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BED7, bit_pos=5), type=PCLocType.TRAINER, map_id=[THE_UNDER_RIGHT_B1F_ID]),
-    Locations.ShadowPokemon.suicune_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=2), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_ID]),
-    Locations.ShadowPokemon.gligar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=3), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_B1F_ID]),
-    Locations.ShadowPokemon.stantler_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=4), type=PCLocType.EVENT, map_id=[THE_UNDER_RIGHT_B1F_ID]),
-    Locations.ShadowPokemon.piloswine_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=5), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.sneasel_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=6), type=PCLocType.EVENT, map_id=[]),
+    Locations.ShadowPokemon.suicune_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=2), type=PCLocType.SHADOW, map_id=[THE_UNDER_RIGHT_ID]),
+    Locations.ShadowPokemon.gligar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=3), type=PCLocType.SHADOW, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.ShadowPokemon.stantler_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=4), type=PCLocType.SHADOW, map_id=[THE_UNDER_RIGHT_B1F_ID]),
+    Locations.ShadowPokemon.piloswine_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=5), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.sneasel_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=6), type=PCLocType.SHADOW, map_id=[]),
     Locations.Chests.under_chest_2: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE63, bit_pos=6), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_ID]),
     Locations.Chests.under_chest_3: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0E4, bit_pos=5), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_ID]),
     Locations.Chests.under_chest_4: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE62, bit_pos=1), type=PCLocType.CHEST, map_id=[THE_UNDER_RIGHT_B1F_SIDE_ID]),
@@ -502,7 +502,7 @@ lab_main_locations: Dict[str, PCLocData] = {
     Locations.Trainers.cole: None,
     Locations.Trainers.odlow: None,
     Locations.Trainers.coren: None,
-    Locations.ShadowPokemon.aipom_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=7), type=PCLocType.EVENT, map_id=[])
+    Locations.ShadowPokemon.aipom_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C07A, bit_pos=7), type=PCLocType.SHADOW, map_id=[])
 }
 
 lab_main_after_key_locations: Dict[str, PCLocData] = {
@@ -515,12 +515,12 @@ lab_main_after_key_locations: Dict[str, PCLocData] = {
     Locations.Trainers.dubik: None,
     Locations.Trainers.kotan: None,
     Locations.Trainers.remil: None,
-    Locations.ShadowPokemon.murkrow_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=0), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.forretress_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=1), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.ariados_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=4), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.granbull_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=2), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.vibrava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=3), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.raikou_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=5), type=PCLocType.EVENT, map_id=[]),
+    Locations.ShadowPokemon.murkrow_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=0), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.forretress_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=1), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.ariados_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=4), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.granbull_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=2), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.vibrava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=3), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.raikou_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=5), type=PCLocType.SHADOW, map_id=[]),
     Locations.Chests.lab_chest_6: None,
 }
 
@@ -558,8 +558,8 @@ tower_pregate_locations: Dict[str, PCLocData] = {
     Locations.Trainers.dakim_1: None,
     Locations.Trainers.venus_1: None,
     Locations.Trainers.ein_1: None,
-    Locations.ShadowPokemon.delibird_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=7), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.sunflora_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=6), type=PCLocType.EVENT, map_id=[])
+    Locations.ShadowPokemon.delibird_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=7), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.sunflora_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C079, bit_pos=6), type=PCLocType.SHADOW, map_id=[])
 }
 
 tower_postgate_locations: Dict[str, PCLocData] = {
@@ -573,8 +573,8 @@ tower_postgate_locations: Dict[str, PCLocData] = {
     Locations.Trainers.kevel: None,
     Locations.Trainers.rugen: None,
     Locations.Trainers.gonzap: None,
-    Locations.ShadowPokemon.heracross_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=0), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.skarmory_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=1), type=PCLocType.EVENT, map_id=[])
+    Locations.ShadowPokemon.heracross_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=0), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.skarmory_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=1), type=PCLocType.SHADOW, map_id=[])
 }
 
 tower_colosseum_locations: Dict[str, PCLocData] = {
@@ -584,12 +584,12 @@ tower_colosseum_locations: Dict[str, PCLocData] = {
     Locations.Trainers.ston: None,
     Locations.Trainers.nascour: None,
     Locations.Trainers.evice: None,
-    Locations.ShadowPokemon.miltank_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=2), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.absol_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=3), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.houndoom_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=4), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.tropius_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=5), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.metagross_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=6), type=PCLocType.EVENT, map_id=[]),
-    Locations.ShadowPokemon.tyranitar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=7), type=PCLocType.EVENT, map_id=[])
+    Locations.ShadowPokemon.miltank_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=2), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.absol_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=3), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.houndoom_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=4), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.tropius_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=5), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.metagross_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=6), type=PCLocType.SHADOW, map_id=[]),
+    Locations.ShadowPokemon.tyranitar_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C078, bit_pos=7), type=PCLocType.SHADOW, map_id=[])
 }
 
 realgam_tower_locations = tower_pregate_locations | tower_postgate_locations | tower_colosseum_locations

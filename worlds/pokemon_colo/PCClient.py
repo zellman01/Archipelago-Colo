@@ -329,6 +329,9 @@ class PCContext(BaseContext):
                         warned_locs.append(loc)
                     continue
                 if current_map not in pc_loc_data.map_id:
+                    if loc not in warned_locs:
+                        logger.warning(f"WARNING: Location {loc} does not have any map data attached to it, and will not be sent when completed. Please inform the Pokemon Colosseum AP devs.")
+                        warned_locs.append(loc)
                     continue
             except:
                 # Should never happen, but just in case

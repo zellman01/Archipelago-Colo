@@ -683,7 +683,7 @@ class Items:
         never_melt_ice = "NeverMeltIce"
         spell_tag = "Spell Tag"
         twisted_spoon = "Twisted Spoon"
-        charcoal = "Charcoa"
+        charcoal = "Charcoal"
         dragon_fang = "Dragon Fang"
 
 class Categories:

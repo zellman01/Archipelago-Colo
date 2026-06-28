@@ -57,13 +57,13 @@ class Nature:
         return grid[self.gender][self.inc][self.dec]
 
     def nature_debug(self) -> str:
-        grid = [[
+        grid = [
             ["Hardy", "Lonely", "Adamant", "Naughty", "Brave"],
             ["Bold", "Docile", "Impish", "Lax", "Relaxed"],
             ["Modest", "Mild", "Bashful", "Rash", "Quiet"],
             ["Calm", "Gentle", "Careful", "Quirky", "Sassy"],
             ["Timid", "Hasty", "Jolly", "Naive", "Serious"]
-        ]]
+        ]
         return grid[self.inc][self.dec]
 
     def get_dec_stat(self) -> str:

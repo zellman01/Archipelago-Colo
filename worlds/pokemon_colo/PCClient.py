@@ -1,6 +1,5 @@
 import asyncio, time, copy, sys
 from typing import Optional
-import math
 
 # AP imports
 import Utils
@@ -12,7 +11,7 @@ from .client.context.base_context import BaseContext, BaseCommandProcessor, logg
 from .Items import *
 from .Locations import *
 from .client.constants import *
-from .Helpers import StringByteFunction as sbf, PCLocType
+from .Helpers import ShadowData, StringByteFunction as sbf, PCLocType
 from .iso_helper.colo_rom import PCUSAPPatch
 
 warned_locs = []
@@ -60,25 +59,6 @@ async def write_string(addr: int, str: str, captial: bool = False) -> None:
 def bits(byte: int):
     return [byte >> i & 1 for i in range(8)]
 
-def calc_hp(level: int) -> int:
-    base = 0 # Find out how to get base stat
-    iv = 0 # Generate HP IV (possibly elsewhere)
-    return math.floor(((2*base+iv)*level)/100)+level+10
-
-def calc_other_stat(level: int, nature: int = 1) -> int:
-    base = 0
-    iv = 0
-    return math.floor(((((2*base+iv)*level)/100)+5)*nature)
-
-def calc_stat(id: int, level: int, nature_name: str, stat: int = 0):
-    """
-    Calculates a given stat for creating the pokemon
-
-    :param id: The internal ID of the Pokemon
-    :param level: The level of the Pokemon
-    :param nature: Nature of the given pokemon
-    """
-    pass
 class PCCommandProcessor(BaseCommandProcessor):
     def _cmd_dolphin(self):
         """Prints current Dolphin status to the client."""
@@ -328,7 +308,7 @@ class PCContext(BaseContext):
                         logger.warning(f"WARNING: The type of the location is set to NONE for location {loc}. Please inform the Pokemon Colosseum AP devs.")
                         warned_locs.append(loc)
                     continue
-                if current_map not in pc_loc_data.map_id:
+                if not pc_loc_data.map_id:
                     if loc not in warned_locs:
                         logger.warning(f"WARNING: Location {loc} does not have any map data attached to it, and will not be sent when completed. Please inform the Pokemon Colosseum AP devs.")
                         warned_locs.append(loc)
@@ -453,15 +433,16 @@ class PCContext(BaseContext):
                         use_addr = ptr_addr(PRIMARY_POINTER, offset)
                         break
                     amount_to_increase += SLOT_OFFSET
-                await write_bytes_and_validate(use_addr, int.to_bytes(pc_item["data"].item_id, 2)) # Set Pokemon internal ID to make it the Pokemon
-                await write_bytes_and_validate(use_addr + CAUGHT_POKEBALL, int.to_bytes(4, 1)) # Set the caught ball to Pokeball
-                await write_bytes_and_validate(use_addr + UNKNOWN_REQUIRED, int.to_bytes(0x0B030202, 4)) # Set required unknown values to what they need to be
-                await write_string(use_addr + NICKNAME_OFFSET, pc_item_name, True) # Add name to the Pokemon
-                await write_bytes_and_validate(use_addr + LEVEL_OFFSET, int.to_bytes(pc_item["data"].level, 1)) # Set the Pokemon's level
-                await write_bytes_and_validate(use_addr + MET_LEVEL, int.to_bytes(pc_item["data"].level, 1)) # Set the met level to the Pokemon's level
-                await write_bytes_and_validate(use_addr + SHADOW_ID_OFFSET, int.to_bytes(pc_item["data"].shadow_id, 1)) # Set the Shadow ID of the Pokemon
-                await write_bytes_and_validate(use_addr + TRAINER_ID_OFFSET, int.to_bytes(self.ot_id, 2)) # Add Trainer ID to the Pokemon
-                await write_string(use_addr + OT_NAME_OFFSET, self.ot_name, False) # Add OT Name to the Pokemon
+                sd = ShadowData(pc_item, self.ot_name, self.ot_id, pc_item_name)
+                #await write_bytes_and_validate(use_addr, int.to_bytes(pc_item["data"].item_id, 2)) # Set Pokemon internal ID to make it the Pokemon
+                #await write_bytes_and_validate(use_addr + CAUGHT_POKEBALL, int.to_bytes(4, 1)) # Set the caught ball to Pokeball
+                #await write_bytes_and_validate(use_addr + UNKNOWN_REQUIRED, int.to_bytes(0x0B030202, 4)) # Set required unknown values to what they need to be
+                #await write_string(use_addr + NICKNAME_OFFSET, pc_item_name, True) # Add name to the Pokemon
+                #await write_bytes_and_validate(use_addr + LEVEL_OFFSET, int.to_bytes(pc_item["data"].level, 1)) # Set the Pokemon's level
+                #await write_bytes_and_validate(use_addr + MET_LEVEL, int.to_bytes(pc_item["data"].level, 1)) # Set the met level to the Pokemon's level
+                #await write_bytes_and_validate(use_addr + SHADOW_ID_OFFSET, int.to_bytes(pc_item["data"].shadow_id, 1)) # Set the Shadow ID of the Pokemon
+                #await write_bytes_and_validate(use_addr + TRAINER_ID_OFFSET, int.to_bytes(self.ot_id, 2)) # Add Trainer ID to the Pokemon
+                #await write_string(use_addr + OT_NAME_OFFSET, self.ot_name, False) # Add OT Name to the Pokemon
         await write_bytes_and_validate(ptr_addr(PRIMARY_POINTER, AP_ITEM_INDEX_OFFSET), int.to_bytes(last_recv_idx, 2))
 
     async def special_startup(self):
@@ -500,7 +481,11 @@ class PCContext(BaseContext):
         await write_bytes_and_validate(use_addr_amount, int.to_bytes(cur_item_amount, 2))
 
         return True
- 
+
+    async def create_pokemon(self, pc_item: ItemDesc, start_offset, ot_name, ot_id, pokemon_name) -> bool:
+
+        return True
+
     async def dolphin_sync_main_task(self):
         logger.info(f"Using Pokemon Colosseum client {CLIENT_VERSION}")
         logger.info("Starting Dolphin connector. Use /dolphin for status information.")

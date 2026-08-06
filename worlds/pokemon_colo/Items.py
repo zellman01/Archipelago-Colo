@@ -1,6 +1,6 @@
 from typing import TypedDict, List, NamedTuple
 from BaseClasses import ItemClassification, Item
-from worlds.pokemon_colo.Helpers import PCItemType
+from .Helpers import PCItemType
 from .Strings import Items, Events
 from .Options import ColosseumOptions, ColosseumSanity
 

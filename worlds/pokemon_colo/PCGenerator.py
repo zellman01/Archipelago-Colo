@@ -53,6 +53,8 @@ class ColosseumRandomizer:
         bin_data = self.gcm.read_file_data("sys/boot.bin")
         bin_data.seek(0x00)
         bin_data.write(sbf.string_to_bytes(three_char_seed, len(three_char_seed)))
+        bin_data.seek(0x08)
+        bin_data.write(sbf.string_to_bytes(self.output_data["Name"], len(self.output_data["Name"])))
         dol_data = self.gcm.read_file_data("sys/main.dol")
         dol_data.seek(0x399B74)
         dol_data.write(sbf.string_to_bytes(three_char_seed, len(three_char_seed)))

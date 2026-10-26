@@ -258,7 +258,7 @@ class Locations:
 
     class ShadowPokemon:
         makuhita_capture = "Phenac City - Makuhita Captured"
-        bayleef_capture = "Bayleef Captured"
+        bayleaf_capture = "Bayleaf Captured"
         quilava_capture = "Quilava Captured"
         croconaw_capture = "Croconaw Captured"
         slugma_capture = "Pyrite Town - Slugma Captured"
@@ -308,7 +308,7 @@ class Locations:
         togetic_capture = "Togetic Captured"
 
         makuhita_purify = "Makuhita Purified"
-        bayleef_purify = "Bayleef Purified"
+        bayleaf_purify = "Bayleef Purified"
         quilava_purify = "Quilava Purified"
         croconaw_purify = "Croconaw Purified"
         slugma_purify = "Slugma Purified"
@@ -413,7 +413,7 @@ class Events:
 class Items:
     class Progression:
         makuhita = "Makuhita"
-        bayleef = "Bayleef"
+        bayleaf = "Bayleaf"
         quilava = "Quilava"
         croconaw = "Croconaw"
         slugma = "Slugma"

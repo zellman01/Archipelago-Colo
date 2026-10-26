@@ -106,7 +106,7 @@ phenac_locations: Dict[str, PCLocData] = {
     Locations.Chests.phenac_chest_1: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BE5F, bit_pos=4), type=PCLocType.CHEST, map_id=[PHENAC_CITY_ID])
 }
 
-# Array{Bayleef, Quilava, Croconaw}
+# Array{Bayleaf, Quilava, Croconaw}
 starter_trainer_locations: Dict[str, PCLocData] = {
     Locations.Trainers.verde: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EF, bit_pos=7), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
     Locations.Trainers.rosso: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C0EE, bit_pos=0), type=PCLocType.TRAINER, map_id=[PHENAC_CITY_ID]),
@@ -114,13 +114,13 @@ starter_trainer_locations: Dict[str, PCLocData] = {
 }
 
 starter_pokemon_captured: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleef_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=5), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
+    Locations.ShadowPokemon.bayleaf_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=5), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
     Locations.ShadowPokemon.quilava_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=6), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID]),
     Locations.ShadowPokemon.croconaw_capture: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1C075, bit_pos=7), type=PCLocType.SHADOW, map_id=[PHENAC_CITY_ID])
 }
 
 starter_pokemon_purified: Dict[str, PCLocData] = {
-    Locations.ShadowPokemon.bayleef_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
+    Locations.ShadowPokemon.bayleaf_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=5), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
     Locations.ShadowPokemon.quilava_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=6), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID]),
     Locations.ShadowPokemon.croconaw_purify: PCLocData(ram_info=PCRamData(ram_addr=PRIMARY_POINTER, ptr=True, ptr_offset=0x1BEE9, bit_pos=7), type=PCLocType.EVENT, map_id=[AGATE_PURIFICATION_STONE_ID])
 }
@@ -667,7 +667,7 @@ starter_trainer_locations_list = [
 ]
 
 starter_pokemon_captured_list = [
-    Locations.ShadowPokemon.bayleef_capture,
+    Locations.ShadowPokemon.bayleaf_capture,
     Locations.ShadowPokemon.quilava_capture,
     Locations.ShadowPokemon.croconaw_capture
 ]

@@ -44,7 +44,7 @@ shadow_pokemon: List[ItemDesc] = [ # Treated for now as event items until progra
      'count': 0,
      'classification': ItemClassification.progression,
      'data': PCItemData(item_id=335, item_type=PCItemType.POKEMON, amount=1, shadow_id=1, level=30, move_id=[193, 116, 233, 238], move_pp=[40, 30, 10, 5])},
-    {'name': Items.Progression.bayleef,
+    {'name': Items.Progression.bayleaf,
      'count': 0,
      'classification': ItemClassification.progression,
      'data': PCItemData(item_id=152, item_type=PCItemType.POKEMON, amount=1, shadow_id=2, level=30, move_id=[241, 235, 75, 34], move_pp=[5, 5, 25, 15])},

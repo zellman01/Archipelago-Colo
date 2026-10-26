@@ -3,7 +3,7 @@ from .Strings import Locations, Items
 
 class Pokemon(enum.Enum):
     MAKUHITA = (Items.Progression.makuhita, True, 0x1, Locations.ShadowPokemon.makuhita_capture)
-    BAYLEAF = (Items.Progression.bayleef, True, 0x2, Locations.ShadowPokemon.bayleef_capture)
+    BAYLEAF = (Items.Progression.bayleaf, True, 0x2, Locations.ShadowPokemon.bayleaf_capture)
     QUILAVA = (Items.Progression.quilava, True, 0x3, Locations.ShadowPokemon.quilava_capture)
     CROCONAW = (Items.Progression.croconaw, True, 0x4, Locations.ShadowPokemon.croconaw_capture)
     SLUGMA = (Items.Progression.slugma, True, 0x5, Locations.ShadowPokemon.slugma_capture)

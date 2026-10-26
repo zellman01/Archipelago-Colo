@@ -74,7 +74,7 @@ class ColosseumWorld(World):
     item_name_groups = {
         Categories.shadow_pokemon: {
             Items.Progression.makuhita,
-            Items.Progression.bayleef,
+            Items.Progression.bayleaf,
             Items.Progression.quilava,
             Items.Progression.croconaw,
             Items.Progression.misdreavus,
@@ -187,9 +187,9 @@ class ColosseumWorld(World):
             if self.options.goal < Goal.option_snagem_hideout: # Check to see if only one of Quilava, Bayleaf or Croconaw is obtainable before goal, and if the extra shadow pokemon can be caught
                 if self.options.phenac_starter_choice == PhenacStarterChoice.option_bayleaf and (poke.pokemon_name == Items.Progression.quilava or poke.pokemon_name == Items.Progression.croconaw):
                     continue
-                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_quilava and (poke.pokemon_name == Items.Progression.bayleef or poke.pokemon_name == Items.Progression.croconaw):
+                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_quilava and (poke.pokemon_name == Items.Progression.bayleaf or poke.pokemon_name == Items.Progression.croconaw):
                     continue
-                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_croconaw and (poke.pokemon_name == Items.Progression.bayleef or poke.pokemon_name == Items.Progression.quilava):
+                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_croconaw and (poke.pokemon_name == Items.Progression.bayleaf or poke.pokemon_name == Items.Progression.quilava):
                     continue
                 if poke.is_postgame == True:
                     continue

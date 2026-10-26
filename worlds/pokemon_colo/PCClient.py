@@ -1,6 +1,6 @@
 import asyncio, time, copy, sys
 from typing import Optional
-
+import traceback
 # AP imports
 import Utils
 from CommonClient import get_base_parser, gui_enabled, server_loop
@@ -11,7 +11,7 @@ from .client.context.base_context import BaseContext, BaseCommandProcessor, logg
 from .Items import *
 from .Locations import *
 from .client.constants import *
-from .Helpers import ShadowData, StringByteFunction as sbf, PCLocType
+from .Helpers import StringByteFunction as sbf, PCLocType
 from .iso_helper.colo_rom import PCUSAPPatch
 
 warned_locs = []
@@ -33,28 +33,19 @@ def write_short(console_addr: int, value: int):
     dme.write_bytes(console_addr, value.to_bytes(2))
 
 def read_string(console_addr: int, strlen: int):
-    tmp_str = ""
-    tmp = ""
-    amt_to_increase = 0
-    while True:
-        tmp += sbf.byte_string_strip_null_terminator(dme.read_bytes(console_addr + amt_to_increase, 1))
-        if tmp == "" or (amt_to_increase / 2) > strlen:
-            break
-        tmp_str += tmp
-        amt_to_increase += 2
-
-    return tmp_str
+    return sbf.byte_string_strip_null_terminator(dme.read_bytes(console_addr, strlen))
 
 async def write_bytes_and_validate(addr: int, value: bytes) -> None:
+    if not isinstance(value, bytes):
+        raise Exception(f"Expected bytes, got {type(value)} instead (write_bytes_and_validate).")
     dme.write_bytes(addr, value)
 
-async def write_string(addr: int, str: str, captial: bool = False) -> None:
-    added_index = 0
-    for char in str:
-        if captial:
-            char = char.upper()
-        dme.write_byte(addr + added_index, ord(char))
-        added_index += 2
+async def write_string(addr: int, str_list: list) -> None:
+    if not isinstance(str_list, list):
+        raise Exception(f"Expected list, got {type(str_list)} instead (write_string)")
+    for i in range(0, len(str_list)):
+        dme.write_bytes(addr, str_list[i])
+        addr += 1
 
 def bits(byte: int):
     return [byte >> i & 1 for i in range(8)]
@@ -421,28 +412,7 @@ class PCContext(BaseContext):
                 
                 if not success:                    
                     logger.error(f"Item {pc_item['name']} could not be added to Key Items because its full! Please inform the Pokemon Colosseum AP devs.")
-
-            elif pc_item["data"].item_type == PCItemType.POKEMON:
-                # Handle adding a pokemon to the PC
-                use_addr = 0x0
-                amount_to_increase = 0x0
-                while use_addr == 0x0:
-                    offset = B1_S1_OFFSET + amount_to_increase
-                    pc_poke_id = read_short(ptr_addr(PRIMARY_POINTER, offset))
-                    if pc_poke_id == 0:
-                        use_addr = ptr_addr(PRIMARY_POINTER, offset)
-                        break
-                    amount_to_increase += SLOT_OFFSET
-                sd = ShadowData(pc_item, self.ot_name, self.ot_id, pc_item_name)
-                #await write_bytes_and_validate(use_addr, int.to_bytes(pc_item["data"].item_id, 2)) # Set Pokemon internal ID to make it the Pokemon
-                #await write_bytes_and_validate(use_addr + CAUGHT_POKEBALL, int.to_bytes(4, 1)) # Set the caught ball to Pokeball
-                #await write_bytes_and_validate(use_addr + UNKNOWN_REQUIRED, int.to_bytes(0x0B030202, 4)) # Set required unknown values to what they need to be
-                #await write_string(use_addr + NICKNAME_OFFSET, pc_item_name, True) # Add name to the Pokemon
-                #await write_bytes_and_validate(use_addr + LEVEL_OFFSET, int.to_bytes(pc_item["data"].level, 1)) # Set the Pokemon's level
-                #await write_bytes_and_validate(use_addr + MET_LEVEL, int.to_bytes(pc_item["data"].level, 1)) # Set the met level to the Pokemon's level
-                #await write_bytes_and_validate(use_addr + SHADOW_ID_OFFSET, int.to_bytes(pc_item["data"].shadow_id, 1)) # Set the Shadow ID of the Pokemon
-                #await write_bytes_and_validate(use_addr + TRAINER_ID_OFFSET, int.to_bytes(self.ot_id, 2)) # Add Trainer ID to the Pokemon
-                #await write_string(use_addr + OT_NAME_OFFSET, self.ot_name, False) # Add OT Name to the Pokemon
+                
         await write_bytes_and_validate(ptr_addr(PRIMARY_POINTER, AP_ITEM_INDEX_OFFSET), int.to_bytes(last_recv_idx, 2))
 
     async def special_startup(self):

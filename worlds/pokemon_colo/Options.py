@@ -46,31 +46,31 @@ class PurifyUnlockAmount(NamedRange):
 
 class RuiUnlock(Choice):
     """
-    Choose how to get Rui.
+    Choose how to get Rui. (NOT IMPLEMENTED)
     Auto - Start with Rui
     Sphere 1 - Puts Rui in sphere 1 guarenteed (may still require a restart, but not as severley punishing as Multiworld)
-    Multiworld - Puts Rui randomly in the multiworld (may require restarting the file once gotten, depending on what sphere)
+    Multiworld - Puts Rui randomly in the multiworld (may require restarting the file once gotten, depending on what sphere) (Not currently available)
     """
     display_name = "Rui Unlock"
     option_auto = 0
     option_sphere_1 = 1
-    option_multiworld = 2
+    #option_multiworld = 2
     default = 1
 
 class ShadowPokemonAsItems(DefaultOnToggle):
-    """Get Shadow Pokemon as items in the multiworld instead of from captures, freeing their checks to be something else (If off, currently still puts pokemon in the multiworld)"""
+    """Get Shadow Pokemon as items in the multiworld instead of from captures, freeing their checks to be something else (If off, currently still puts pokemon in the multiworld) (NOT IMPLEMENTED)"""
     display_name = "Put Shadow Pokemon in Multiworld"
 
 class PhenacStarterChoice(Choice):
     """Sets which one of the trainers will be considered in logic at Phenac at the start of the game. Will not add the others unless doing a goal that is not Evice
     Warning: This will put capturing this starter and defeating the coresponding trainer in logic at Phenac City. Setting it to random is not recommended."""
     display_name = "Phenac Johto Starter"
-    option_bayleef = 0
+    option_bayleaf = 0
     option_quilava = 1
     option_croconaw = 2
 
 class PostgameShadowPokemon(Toggle):
-    """Chooses if the post-game Shadow Pokemon are in the multiworld. Is ignored if the goal is set to Purify All Pokemon"""
+    """Chooses if the post-game Shadow Pokemon are in the multiworld. Is ignored if the goal is set to Purify All Pokemon (NOT IMPLEMENTED)"""
     display_name = "Add Post-Game Shadow Pokemon"
 
 class Difficulty(Choice):

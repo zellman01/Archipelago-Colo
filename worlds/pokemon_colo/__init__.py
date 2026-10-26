@@ -12,6 +12,7 @@ from .Strings import Categories, Items, Events, Locations
 from .Presets import option_presets
 from .client.constants import CLIENT_VERSION, AP_WORLD_VERSION_NAME
 from .iso_helper.colo_rom import ColoPlayerContainer
+from .Pokemon import Pokemon
 from Options import OptionGroup
 from BaseClasses import Region, Item, ItemClassification, Tutorial, Location
 from .client.colosseum_settings import PokemonColosseumSettings
@@ -178,6 +179,24 @@ class ColosseumWorld(World):
             win_loc = self.multiworld.get_location(Locations.Misc.dakim_defeated, self.player)
         win_loc.place_locked_item(goal_item)
         self.items_created += 1
+        if self.options.shadow_pokemon_as_items == True or True: # Will always return true as option needs to currently be ignored, will be used once shadow pokemon can be items in Multiworld
+           self.shadow_pokemon_event_item()
+
+    def shadow_pokemon_event_item(self) -> None:
+        for poke in Pokemon:
+            if self.options.goal < Goal.option_snagem_hideout: # Check to see if only one of Quilava, Bayleaf or Croconaw is obtainable before goal, and if the extra shadow pokemon can be caught
+                if self.options.phenac_starter_choice == PhenacStarterChoice.option_bayleaf and (poke.pokemon_name == Items.Progression.quilava or poke.pokemon_name == Items.Progression.croconaw):
+                    continue
+                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_quilava and (poke.pokemon_name == Items.Progression.bayleef or poke.pokemon_name == Items.Progression.croconaw):
+                    continue
+                elif self.options.phenac_starter_choice == PhenacStarterChoice.option_croconaw and (poke.pokemon_name == Items.Progression.bayleef or poke.pokemon_name == Items.Progression.quilava):
+                    continue
+                if poke.is_postgame == True:
+                    continue
+            tmp_loc = self.multiworld.get_location(poke.static_location_name, self.player)
+            tmp_item = ColosseumItem(poke.pokemon_name, ItemClassification.progression, self.item_name_to_id[poke.pokemon_name], self.player)
+            tmp_loc.place_locked_item(tmp_item)
+            self.items_created += 1
 
     def event_items(self) -> None:
         # Set event items
